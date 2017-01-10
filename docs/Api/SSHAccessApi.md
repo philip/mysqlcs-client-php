@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **addSshKey**
-> \Swagger\Client\Model\AddsshkeyResponse addSshKey($identity_domain_id, $service_id, $credential_name, $payload)
+> \Swagger\Client\Model\AddsshkeyResponse addSshKey($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name, $payload)
 
 Add a New SSH Public Key
 
@@ -32,13 +32,14 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\SSHAccessApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $credential_name = "credential_name_example"; // string | Credential name to add the SSH public key to. Currently, the only credential name you can use is <code>vmspublickey</code>.
 $payload = new \Swagger\Client\Model\AddsshkeyPostrequest(); // \Swagger\Client\Model\AddsshkeyPostrequest | The request body defines the details of the SSH public key name and value.
 
 try {
-    $result = $api_instance->addSshKey($identity_domain_id, $service_id, $credential_name, $payload);
+    $result = $api_instance->addSshKey($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SSHAccessApi->addSshKey: ', $e->getMessage(), PHP_EOL;
@@ -50,6 +51,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **credential_name** | **string**| Credential name to add the SSH public key to. Currently, the only credential name you can use is &lt;code&gt;vmspublickey&lt;/code&gt;. |
@@ -71,7 +73,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSshKeyDescription**
-> \Swagger\Client\Model\KeyDescItem getSshKeyDescription($identity_domain_id, $service_id, $credential_name)
+> \Swagger\Client\Model\KeyDescItem getSshKeyDescription($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name)
 
 View the SSH Key Description
 
@@ -91,12 +93,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\SSHAccessApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $credential_name = "credential_name_example"; // string | Credential name associated with the SSH key. Currently, the only credential name you can use is <code>vmspublickey</code>.
 
 try {
-    $result = $api_instance->getSshKeyDescription($identity_domain_id, $service_id, $credential_name);
+    $result = $api_instance->getSshKeyDescription($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SSHAccessApi->getSshKeyDescription: ', $e->getMessage(), PHP_EOL;
@@ -108,6 +111,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **credential_name** | **string**| Credential name associated with the SSH key. Currently, the only credential name you can use is &lt;code&gt;vmspublickey&lt;/code&gt;. |
@@ -128,7 +132,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSshKeyDescriptions**
-> \Swagger\Client\Model\KeydescqueryResponse getSshKeyDescriptions($identity_domain_id, $service_name, $credname)
+> \Swagger\Client\Model\KeydescqueryResponse getSshKeyDescriptions($x_id_tenant_name, $identity_domain_id, $service_name, $credname)
 
 Retrieve the SSH Key Description Using Query Parameters
 
@@ -148,12 +152,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\SSHAccessApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_name = "service_name_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $credname = "credname_example"; // string | Unique credential name.<p><b>Note:</b> <code>vmspublickey</code> is the only supported credential name. This is the default if a credential name is not supplied.
 
 try {
-    $result = $api_instance->getSshKeyDescriptions($identity_domain_id, $service_name, $credname);
+    $result = $api_instance->getSshKeyDescriptions($x_id_tenant_name, $identity_domain_id, $service_name, $credname);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SSHAccessApi->getSshKeyDescriptions: ', $e->getMessage(), PHP_EOL;
@@ -165,6 +170,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_name** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **credname** | **string**| Unique credential name.&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; &lt;code&gt;vmspublickey&lt;/code&gt; is the only supported credential name. This is the default if a credential name is not supplied. | [optional]
@@ -185,7 +191,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSshKeyDetails**
-> \Swagger\Client\Model\SshkeyDetailsResponse getSshKeyDetails($identity_domain_id, $service_id, $credential_name)
+> \Swagger\Client\Model\SshkeyDetailsResponse getSshKeyDetails($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name)
 
 View Details of the SSH Key
 
@@ -205,12 +211,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\SSHAccessApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $credential_name = "credential_name_example"; // string | Credential name associated with the SSH public key. Currently, the only credential name you can use is <code>vmspublickey</code>.
 
 try {
-    $result = $api_instance->getSshKeyDetails($identity_domain_id, $service_id, $credential_name);
+    $result = $api_instance->getSshKeyDetails($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SSHAccessApi->getSshKeyDetails: ', $e->getMessage(), PHP_EOL;
@@ -222,6 +229,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **credential_name** | **string**| Credential name associated with the SSH public key. Currently, the only credential name you can use is &lt;code&gt;vmspublickey&lt;/code&gt;. |
@@ -242,7 +250,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSshKeyValue**
-> \Swagger\Client\Model\KeyvaluequeryResponse getSshKeyValue($identity_domain_id, $service_name, $credname)
+> \Swagger\Client\Model\KeyvaluequeryResponse getSshKeyValue($x_id_tenant_name, $identity_domain_id, $service_name, $credname)
 
 Retrieve the SSH Key Value Using Query Parameters
 
@@ -262,12 +270,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\SSHAccessApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_name = "service_name_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $credname = "credname_example"; // string | Unique credential name.<p><b>Note:</b> <code>vmspublickey</code> is the only supported credential name. This is the default if a credential name is not supplied.
 
 try {
-    $result = $api_instance->getSshKeyValue($identity_domain_id, $service_name, $credname);
+    $result = $api_instance->getSshKeyValue($x_id_tenant_name, $identity_domain_id, $service_name, $credname);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SSHAccessApi->getSshKeyValue: ', $e->getMessage(), PHP_EOL;
@@ -279,6 +288,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_name** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **credname** | **string**| Unique credential name.&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; &lt;code&gt;vmspublickey&lt;/code&gt; is the only supported credential name. This is the default if a credential name is not supplied. | [optional]

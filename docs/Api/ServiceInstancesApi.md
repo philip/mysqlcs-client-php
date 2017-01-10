@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **addInstance**
-> \Swagger\Client\Model\AcceptedResponse addInstance($identity_domain_id, $payload)
+> \Swagger\Client\Model\AcceptedResponse addInstance($x_id_tenant_name, $identity_domain_id, $payload)
 
 Create an Oracle MySQL Cloud Service Instance
 
@@ -35,11 +35,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\ServiceInstancesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $payload = new \Swagger\Client\Model\CreateInstance(); // \Swagger\Client\Model\CreateInstance | The request body defines the details of the service instance creation request
 
 try {
-    $result = $api_instance->addInstance($identity_domain_id, $payload);
+    $result = $api_instance->addInstance($x_id_tenant_name, $identity_domain_id, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ServiceInstancesApi->addInstance: ', $e->getMessage(), PHP_EOL;
@@ -51,6 +52,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **payload** | [**\Swagger\Client\Model\CreateInstance**](../Model/\Swagger\Client\Model\CreateInstance.md)| The request body defines the details of the service instance creation request |
 
@@ -70,7 +72,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **addInstanceStorage**
-> \Swagger\Client\Model\AcceptedResponse addInstanceStorage($identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\AcceptedResponse addInstanceStorage($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Add storage to a MySQL Cloud Service instance
 
@@ -90,12 +92,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\ServiceInstancesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $payload = new \Swagger\Client\Model\AddStoragePostrequest(); // \Swagger\Client\Model\AddStoragePostrequest | The request body defines the details of the request.
 
 try {
-    $result = $api_instance->addInstanceStorage($identity_domain_id, $service_id, $payload);
+    $result = $api_instance->addInstanceStorage($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ServiceInstancesApi->addInstanceStorage: ', $e->getMessage(), PHP_EOL;
@@ -107,6 +110,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **payload** | [**\Swagger\Client\Model\AddStoragePostrequest**](../Model/\Swagger\Client\Model\AddStoragePostrequest.md)| The request body defines the details of the request. |
@@ -127,7 +131,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteInstance**
-> \Swagger\Client\Model\AcceptedResponse deleteInstance($identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\AcceptedResponse deleteInstance($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Delete a Service Instance
 
@@ -147,12 +151,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\ServiceInstancesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $payload = new \Swagger\Client\Model\DeleteInstanceRequest(); // \Swagger\Client\Model\DeleteInstanceRequest | The request body is reserved for options, although no options exist at this time. Instead, pass in an empty object, such as {}.
 
 try {
-    $result = $api_instance->deleteInstance($identity_domain_id, $service_id, $payload);
+    $result = $api_instance->deleteInstance($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ServiceInstancesApi->deleteInstance: ', $e->getMessage(), PHP_EOL;
@@ -164,6 +169,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **payload** | [**\Swagger\Client\Model\DeleteInstanceRequest**](../Model/\Swagger\Client\Model\DeleteInstanceRequest.md)| The request body is reserved for options, although no options exist at this time. Instead, pass in an empty object, such as {}. |
@@ -184,7 +190,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAllInstances**
-> \Swagger\Client\Model\ViewAllInstances getAllInstances($identity_domain_id)
+> \Swagger\Client\Model\ViewAllInstances getAllInstances($x_id_tenant_name, $identity_domain_id)
 
 View All Service Instances
 
@@ -204,10 +210,11 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\ServiceInstancesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 
 try {
-    $result = $api_instance->getAllInstances($identity_domain_id);
+    $result = $api_instance->getAllInstances($x_id_tenant_name, $identity_domain_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ServiceInstancesApi->getAllInstances: ', $e->getMessage(), PHP_EOL;
@@ -219,6 +226,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
 
 ### Return type
@@ -237,7 +245,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getInstance**
-> \Swagger\Client\Model\ViewInstance getInstance($identity_domain_id, $service_id)
+> \Swagger\Client\Model\ViewInstance getInstance($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View a Service Instance
 
@@ -257,11 +265,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\ServiceInstancesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 
 try {
-    $result = $api_instance->getInstance($identity_domain_id, $service_id);
+    $result = $api_instance->getInstance($x_id_tenant_name, $identity_domain_id, $service_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ServiceInstancesApi->getInstance: ', $e->getMessage(), PHP_EOL;
@@ -273,6 +282,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
 
@@ -292,7 +302,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getJobStatus**
-> \Swagger\Client\Model\ViewActivityLog getJobStatus($identity_domain_id, $job_id)
+> \Swagger\Client\Model\ViewActivityLog getJobStatus($x_id_tenant_name, $identity_domain_id, $job_id)
 
 View the Activity Log of a Job
 
@@ -312,11 +322,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\ServiceInstancesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $job_id = "job_id_example"; // string | Job ID.
 
 try {
-    $result = $api_instance->getJobStatus($identity_domain_id, $job_id);
+    $result = $api_instance->getJobStatus($x_id_tenant_name, $identity_domain_id, $job_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ServiceInstancesApi->getJobStatus: ', $e->getMessage(), PHP_EOL;
@@ -328,6 +339,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **job_id** | **string**| Job ID. |
 
@@ -347,7 +359,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **scaleInstance**
-> \Swagger\Client\Model\AcceptedResponse scaleInstance($identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\AcceptedResponse scaleInstance($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Scale a MySQL Cloud Service instance
 
@@ -367,12 +379,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\ServiceInstancesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $payload = new \Swagger\Client\Model\ScalePostrequest(); // \Swagger\Client\Model\ScalePostrequest | The request body defines the details of the request.
 
 try {
-    $result = $api_instance->scaleInstance($identity_domain_id, $service_id, $payload);
+    $result = $api_instance->scaleInstance($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ServiceInstancesApi->scaleInstance: ', $e->getMessage(), PHP_EOL;
@@ -384,6 +397,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **payload** | [**\Swagger\Client\Model\ScalePostrequest**](../Model/\Swagger\Client\Model\ScalePostrequest.md)| The request body defines the details of the request. |
@@ -404,7 +418,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateInstanceStatus**
-> \Swagger\Client\Model\AcceptedResponse updateInstanceStatus($identity_domain_id, $service_id, $function, $payload)
+> \Swagger\Client\Model\AcceptedResponse updateInstanceStatus($x_id_tenant_name, $identity_domain_id, $service_id, $function, $payload)
 
 Start, Stop, or Restart a Service Instance
 
@@ -424,13 +438,14 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\ServiceInstancesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $function = "function_example"; // string | Action of controlling the lifecycle state. {function} will be one of start, stop, or restart.
 $payload = new \Swagger\Client\Model\StopStartRestartInstance(); // \Swagger\Client\Model\StopStartRestartInstance | The request body defines the details of the service instance request.
 
 try {
-    $result = $api_instance->updateInstanceStatus($identity_domain_id, $service_id, $function, $payload);
+    $result = $api_instance->updateInstanceStatus($x_id_tenant_name, $identity_domain_id, $service_id, $function, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ServiceInstancesApi->updateInstanceStatus: ', $e->getMessage(), PHP_EOL;
@@ -442,6 +457,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **function** | **string**| Action of controlling the lifecycle state. {function} will be one of start, stop, or restart. |

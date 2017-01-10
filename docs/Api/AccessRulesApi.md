@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **getAccessRules**
-> \Swagger\Client\Model\SecrulesResponse getAccessRules($identity_domain_id, $service_id)
+> \Swagger\Client\Model\SecrulesResponse getAccessRules($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View All Access Rules
 
@@ -30,11 +30,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\AccessRulesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 
 try {
-    $result = $api_instance->getAccessRules($identity_domain_id, $service_id);
+    $result = $api_instance->getAccessRules($x_id_tenant_name, $identity_domain_id, $service_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AccessRulesApi->getAccessRules: ', $e->getMessage(), PHP_EOL;
@@ -46,6 +47,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
 
@@ -65,7 +67,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **insertAccessRule**
-> insertAccessRule($identity_domain_id, $service_id, $payload)
+> insertAccessRule($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Add an Access Rule
 
@@ -85,12 +87,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\AccessRulesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $payload = new \Swagger\Client\Model\AddsecrulePostrequest(); // \Swagger\Client\Model\AddsecrulePostrequest | The request body defines the details of the access rule to add.
 
 try {
-    $api_instance->insertAccessRule($identity_domain_id, $service_id, $payload);
+    $api_instance->insertAccessRule($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
 } catch (Exception $e) {
     echo 'Exception when calling AccessRulesApi->insertAccessRule: ', $e->getMessage(), PHP_EOL;
 }
@@ -101,6 +104,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **payload** | [**\Swagger\Client\Model\AddsecrulePostrequest**](../Model/\Swagger\Client\Model\AddsecrulePostrequest.md)| The request body defines the details of the access rule to add. |
@@ -121,7 +125,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateAccessRule**
-> \Swagger\Client\Model\SecrulesDetails updateAccessRule($identity_domain_id, $service_id, $rule_name, $payload)
+> \Swagger\Client\Model\SecrulesDetails updateAccessRule($x_id_tenant_name, $identity_domain_id, $service_id, $rule_name, $payload)
 
 Update an Access Rule
 
@@ -141,13 +145,14 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\AccessRulesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $rule_name = "rule_name_example"; // string | Name of the access rule to disable or enable.
 $payload = new \Swagger\Client\Model\UpdatesecrulePutrequest(); // \Swagger\Client\Model\UpdatesecrulePutrequest | The request body defines the details of the disable, enable, or delete request.
 
 try {
-    $result = $api_instance->updateAccessRule($identity_domain_id, $service_id, $rule_name, $payload);
+    $result = $api_instance->updateAccessRule($x_id_tenant_name, $identity_domain_id, $service_id, $rule_name, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AccessRulesApi->updateAccessRule: ', $e->getMessage(), PHP_EOL;
@@ -159,6 +164,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **rule_name** | **string**| Name of the access rule to disable or enable. |

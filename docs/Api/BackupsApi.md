@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **deleteBackup**
-> \Swagger\Client\Model\AcceptedResponse deleteBackup($identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\AcceptedResponse deleteBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Delete a Backup (Asynchronous)
 
@@ -38,12 +38,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\BackupsApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $payload = new \Swagger\Client\Model\DeleteBackupRequest(); // \Swagger\Client\Model\DeleteBackupRequest | The request body contains details of the delete backup request. You must specify at least one attribute.
 
 try {
-    $result = $api_instance->deleteBackup($identity_domain_id, $service_id, $payload);
+    $result = $api_instance->deleteBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BackupsApi->deleteBackup: ', $e->getMessage(), PHP_EOL;
@@ -55,6 +56,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **payload** | [**\Swagger\Client\Model\DeleteBackupRequest**](../Model/\Swagger\Client\Model\DeleteBackupRequest.md)| The request body contains details of the delete backup request. You must specify at least one attribute. |
@@ -75,7 +77,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAllBackups**
-> \Swagger\Client\Model\ViewAllBackupsResponse getAllBackups($identity_domain_id, $service_id)
+> \Swagger\Client\Model\ViewAllBackupsResponse getAllBackups($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View All Backups
 
@@ -95,11 +97,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\BackupsApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 
 try {
-    $result = $api_instance->getAllBackups($identity_domain_id, $service_id);
+    $result = $api_instance->getAllBackups($x_id_tenant_name, $identity_domain_id, $service_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BackupsApi->getAllBackups: ', $e->getMessage(), PHP_EOL;
@@ -111,6 +114,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
 
@@ -130,7 +134,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAllDeletedBackups**
-> \Swagger\Client\Model\ViewAllDeletedResponse getAllDeletedBackups($identity_domain_id, $service_id)
+> \Swagger\Client\Model\ViewAllDeletedResponse getAllDeletedBackups($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View All Deleted Backups
 
@@ -150,11 +154,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\BackupsApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 
 try {
-    $result = $api_instance->getAllDeletedBackups($identity_domain_id, $service_id);
+    $result = $api_instance->getAllDeletedBackups($x_id_tenant_name, $identity_domain_id, $service_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BackupsApi->getAllDeletedBackups: ', $e->getMessage(), PHP_EOL;
@@ -166,6 +171,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
 
@@ -185,7 +191,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getBackup**
-> \Swagger\Client\Model\ViewBackup getBackup($identity_domain_id, $service_id, $backup_id, $include_linked_details)
+> \Swagger\Client\Model\ViewBackup getBackup($x_id_tenant_name, $identity_domain_id, $service_id, $backup_id, $include_linked_details)
 
 View a Backup
 
@@ -205,13 +211,14 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\BackupsApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $backup_id = "backup_id_example"; // string | Backup ID.
 $include_linked_details = true; // bool | Flag that specifies whether to include information (<code>true</code>) or exclude information about related backups (<code>false</code>). When set to <code>true</code>:<ul><li>For a full backup, includes information about all incremental backups performed since the last full backup.</li><li>For an incremental backup, includes information about the previous full backup.</li></ul>Defaults to <code>false</code>, excluding information about related backups.
 
 try {
-    $result = $api_instance->getBackup($identity_domain_id, $service_id, $backup_id, $include_linked_details);
+    $result = $api_instance->getBackup($x_id_tenant_name, $identity_domain_id, $service_id, $backup_id, $include_linked_details);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BackupsApi->getBackup: ', $e->getMessage(), PHP_EOL;
@@ -223,6 +230,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **backup_id** | **string**| Backup ID. |
@@ -244,7 +252,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getBackupConfiguration**
-> \Swagger\Client\Model\BackupconfigResponse getBackupConfiguration($identity_domain_id, $service_id)
+> \Swagger\Client\Model\BackupconfigResponse getBackupConfiguration($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View the Backup Configuration
 
@@ -264,11 +272,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\BackupsApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 
 try {
-    $result = $api_instance->getBackupConfiguration($identity_domain_id, $service_id);
+    $result = $api_instance->getBackupConfiguration($x_id_tenant_name, $identity_domain_id, $service_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BackupsApi->getBackupConfiguration: ', $e->getMessage(), PHP_EOL;
@@ -280,6 +289,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
 
@@ -299,7 +309,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getDeletedBackup**
-> \Swagger\Client\Model\ViewDeletedResponse getDeletedBackup($identity_domain_id, $service_id, $job_id)
+> \Swagger\Client\Model\ViewDeletedResponse getDeletedBackup($x_id_tenant_name, $identity_domain_id, $service_id, $job_id)
 
 View a Deleted Backup
 
@@ -319,12 +329,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\BackupsApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $job_id = "job_id_example"; // string | Job ID for the backup deletion.
 
 try {
-    $result = $api_instance->getDeletedBackup($identity_domain_id, $service_id, $job_id);
+    $result = $api_instance->getDeletedBackup($x_id_tenant_name, $identity_domain_id, $service_id, $job_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BackupsApi->getDeletedBackup: ', $e->getMessage(), PHP_EOL;
@@ -336,6 +347,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **job_id** | **string**| Job ID for the backup deletion. |
@@ -356,7 +368,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getRestoreBackupOperations**
-> \Swagger\Client\Model\ViewAllRestorationsResponse getRestoreBackupOperations($identity_domain_id, $service_id)
+> \Swagger\Client\Model\ViewAllRestorationsResponse getRestoreBackupOperations($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View All Restoration Operations
 
@@ -376,11 +388,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\BackupsApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 
 try {
-    $result = $api_instance->getRestoreBackupOperations($identity_domain_id, $service_id);
+    $result = $api_instance->getRestoreBackupOperations($x_id_tenant_name, $identity_domain_id, $service_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BackupsApi->getRestoreBackupOperations: ', $e->getMessage(), PHP_EOL;
@@ -392,6 +405,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
 
@@ -411,7 +425,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getRestoreBackupStatus**
-> \Swagger\Client\Model\RestoreHistory getRestoreBackupStatus($identity_domain_id, $service_id, $job_id)
+> \Swagger\Client\Model\RestoreHistory getRestoreBackupStatus($x_id_tenant_name, $identity_domain_id, $service_id, $job_id)
 
 View the Status of a Restoration Operation
 
@@ -431,12 +445,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\BackupsApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $job_id = "job_id_example"; // string | Job ID of the restoration operation.
 
 try {
-    $result = $api_instance->getRestoreBackupStatus($identity_domain_id, $service_id, $job_id);
+    $result = $api_instance->getRestoreBackupStatus($x_id_tenant_name, $identity_domain_id, $service_id, $job_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BackupsApi->getRestoreBackupStatus: ', $e->getMessage(), PHP_EOL;
@@ -448,6 +463,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **job_id** | **string**| Job ID of the restoration operation. |
@@ -468,7 +484,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **restoreBackup**
-> \Swagger\Client\Model\AcceptedResponse restoreBackup($identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\AcceptedResponse restoreBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Restore a Service Instance from Backup
 
@@ -488,12 +504,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\BackupsApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $payload = new \Swagger\Client\Model\RestorationPostrequest(); // \Swagger\Client\Model\RestorationPostrequest | The request body defines the details of the restoration request.
 
 try {
-    $result = $api_instance->restoreBackup($identity_domain_id, $service_id, $payload);
+    $result = $api_instance->restoreBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BackupsApi->restoreBackup: ', $e->getMessage(), PHP_EOL;
@@ -505,6 +522,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **payload** | [**\Swagger\Client\Model\RestorationPostrequest**](../Model/\Swagger\Client\Model\RestorationPostrequest.md)| The request body defines the details of the restoration request. |
@@ -525,7 +543,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **startBackup**
-> \Swagger\Client\Model\AcceptedResponse startBackup($identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\AcceptedResponse startBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Initiate an On-demand Backup
 
@@ -545,12 +563,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\BackupsApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $payload = new \Swagger\Client\Model\OndemandRequest(); // \Swagger\Client\Model\OndemandRequest | The request body contains details of the on-demand backup request.
 
 try {
-    $result = $api_instance->startBackup($identity_domain_id, $service_id, $payload);
+    $result = $api_instance->startBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BackupsApi->startBackup: ', $e->getMessage(), PHP_EOL;
@@ -562,6 +581,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **payload** | [**\Swagger\Client\Model\OndemandRequest**](../Model/\Swagger\Client\Model\OndemandRequest.md)| The request body contains details of the on-demand backup request. |
@@ -582,7 +602,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateBackupConfiguration**
-> \Swagger\Client\Model\BackupconfigResponse updateBackupConfiguration($identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\BackupconfigResponse updateBackupConfiguration($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Update the Backup Configuration
 
@@ -602,12 +622,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\BackupsApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $payload = new \Swagger\Client\Model\BackupconfigPostrequest(); // \Swagger\Client\Model\BackupconfigPostrequest | The request body defines the details of the backup configuration update request. Specify only those attributes that you want to update.
 
 try {
-    $result = $api_instance->updateBackupConfiguration($identity_domain_id, $service_id, $payload);
+    $result = $api_instance->updateBackupConfiguration($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BackupsApi->updateBackupConfiguration: ', $e->getMessage(), PHP_EOL;
@@ -619,6 +640,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **payload** | [**\Swagger\Client\Model\BackupconfigPostrequest**](../Model/\Swagger\Client\Model\BackupconfigPostrequest.md)| The request body defines the details of the backup configuration update request. Specify only those attributes that you want to update. |

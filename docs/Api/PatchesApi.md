@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **applyPatch**
-> \Swagger\Client\Model\AcceptedResponse applyPatch($identity_domain_id, $service_id, $patch_id, $payload)
+> \Swagger\Client\Model\AcceptedResponse applyPatch($x_id_tenant_name, $identity_domain_id, $service_id, $patch_id, $payload)
 
 Apply a Patch
 
@@ -35,13 +35,14 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\PatchesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $patch_id = "patch_id_example"; // string | Patch ID. The patch ID can be retrieved via getting the list of available patches.
 $payload = new \Swagger\Client\Model\PatchRequest(); // \Swagger\Client\Model\PatchRequest | The request body contains details of the patch request. There are no required values, but a value is required. Pass in {} if settings are not required.
 
 try {
-    $result = $api_instance->applyPatch($identity_domain_id, $service_id, $patch_id, $payload);
+    $result = $api_instance->applyPatch($x_id_tenant_name, $identity_domain_id, $service_id, $patch_id, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PatchesApi->applyPatch: ', $e->getMessage(), PHP_EOL;
@@ -53,6 +54,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **patch_id** | **string**| Patch ID. The patch ID can be retrieved via getting the list of available patches. |
@@ -74,7 +76,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **doPatchPrecheck**
-> \Swagger\Client\Model\AcceptedResponse doPatchPrecheck($identity_domain_id, $service_id, $patch_id)
+> \Swagger\Client\Model\AcceptedResponse doPatchPrecheck($x_id_tenant_name, $identity_domain_id, $service_id, $patch_id)
 
 Perform a Patching Precheck
 
@@ -94,12 +96,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\PatchesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $patch_id = "patch_id_example"; // string | ID of the patch to precheck.
 
 try {
-    $result = $api_instance->doPatchPrecheck($identity_domain_id, $service_id, $patch_id);
+    $result = $api_instance->doPatchPrecheck($x_id_tenant_name, $identity_domain_id, $service_id, $patch_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PatchesApi->doPatchPrecheck: ', $e->getMessage(), PHP_EOL;
@@ -111,6 +114,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **patch_id** | **string**| ID of the patch to precheck. |
@@ -131,7 +135,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAppliedPatches**
-> \Swagger\Client\Model\AppliedPatchesResponse getAppliedPatches($identity_domain_id, $service_id)
+> \Swagger\Client\Model\AppliedPatchesResponse getAppliedPatches($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View Applied Patches
 
@@ -151,11 +155,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\PatchesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 
 try {
-    $result = $api_instance->getAppliedPatches($identity_domain_id, $service_id);
+    $result = $api_instance->getAppliedPatches($x_id_tenant_name, $identity_domain_id, $service_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PatchesApi->getAppliedPatches: ', $e->getMessage(), PHP_EOL;
@@ -167,6 +172,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
 
@@ -186,7 +192,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAvailablePatches**
-> \Swagger\Client\Model\AvailablePatchesResponse getAvailablePatches($identity_domain_id, $service_id)
+> \Swagger\Client\Model\AvailablePatchesResponse getAvailablePatches($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View Available Patches
 
@@ -206,11 +212,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\PatchesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 
 try {
-    $result = $api_instance->getAvailablePatches($identity_domain_id, $service_id);
+    $result = $api_instance->getAvailablePatches($x_id_tenant_name, $identity_domain_id, $service_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PatchesApi->getAvailablePatches: ', $e->getMessage(), PHP_EOL;
@@ -222,6 +229,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
 
@@ -241,7 +249,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getPatchStatus**
-> \Swagger\Client\Model\AppliedPatch getPatchStatus($identity_domain_id, $service_id, $job_id)
+> \Swagger\Client\Model\AppliedPatch getPatchStatus($x_id_tenant_name, $identity_domain_id, $service_id, $job_id)
 
 View a Patch Operation Status
 
@@ -261,12 +269,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\PatchesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $job_id = "job_id_example"; // string | Unique ID of a patching or rollback operation.
 
 try {
-    $result = $api_instance->getPatchStatus($identity_domain_id, $service_id, $job_id);
+    $result = $api_instance->getPatchStatus($x_id_tenant_name, $identity_domain_id, $service_id, $job_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PatchesApi->getPatchStatus: ', $e->getMessage(), PHP_EOL;
@@ -278,6 +287,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **job_id** | **string**| Unique ID of a patching or rollback operation. |
@@ -298,7 +308,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getPrecheckOperations**
-> \Swagger\Client\Model\ViewPrecheckResponse getPrecheckOperations($identity_domain_id, $service_id)
+> \Swagger\Client\Model\ViewPrecheckResponse getPrecheckOperations($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View All Patching Precheck Operations
 
@@ -318,11 +328,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\PatchesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 
 try {
-    $result = $api_instance->getPrecheckOperations($identity_domain_id, $service_id);
+    $result = $api_instance->getPrecheckOperations($x_id_tenant_name, $identity_domain_id, $service_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PatchesApi->getPrecheckOperations: ', $e->getMessage(), PHP_EOL;
@@ -334,6 +345,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
 
@@ -353,7 +365,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getPrecheckStatus**
-> \Swagger\Client\Model\ViewPrecheckResponse getPrecheckStatus($identity_domain_id, $service_id, $job_id)
+> \Swagger\Client\Model\ViewPrecheckResponse getPrecheckStatus($x_id_tenant_name, $identity_domain_id, $service_id, $job_id)
 
 View the Status of a Patching Precheck Operation
 
@@ -373,12 +385,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\PatchesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $job_id = "job_id_example"; // string | Job ID of the operation that was returned when the patching precheck was initiated.
 
 try {
-    $result = $api_instance->getPrecheckStatus($identity_domain_id, $service_id, $job_id);
+    $result = $api_instance->getPrecheckStatus($x_id_tenant_name, $identity_domain_id, $service_id, $job_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PatchesApi->getPrecheckStatus: ', $e->getMessage(), PHP_EOL;
@@ -390,6 +403,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **job_id** | **string**| Job ID of the operation that was returned when the patching precheck was initiated. |
@@ -410,7 +424,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **rollbackPatch**
-> \Swagger\Client\Model\AcceptedResponse rollbackPatch($identity_domain_id, $service_id, $rollback_id, $payload)
+> \Swagger\Client\Model\AcceptedResponse rollbackPatch($x_id_tenant_name, $identity_domain_id, $service_id, $rollback_id, $payload)
 
 Rollback a Patch
 
@@ -430,13 +444,14 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\PatchesApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $rollback_id = "rollback_id_example"; // string | ID of the rollback that is associated to the completed patching operation.
 $payload = new \Swagger\Client\Model\RollbackRequest(); // \Swagger\Client\Model\RollbackRequest | The request body contains a note about the rollback request.
 
 try {
-    $result = $api_instance->rollbackPatch($identity_domain_id, $service_id, $rollback_id, $payload);
+    $result = $api_instance->rollbackPatch($x_id_tenant_name, $identity_domain_id, $service_id, $rollback_id, $payload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PatchesApi->rollbackPatch: ', $e->getMessage(), PHP_EOL;
@@ -448,6 +463,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **rollback_id** | **string**| ID of the rollback that is associated to the completed patching operation. |

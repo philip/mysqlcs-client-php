@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **getMonitoringRecords**
-> \Swagger\Client\Model\MonitorResponse getMonitoringRecords($identity_domain_id, $service_id, $format)
+> \Swagger\Client\Model\MonitorResponse getMonitoringRecords($x_id_tenant_name, $identity_domain_id, $service_id, $format)
 
 Monitor a Service Instance
 
@@ -28,12 +28,13 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 // Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-ID-TENANT-NAME', 'Bearer');
 
 $api_instance = new Swagger\Client\Api\HealthMonitoringApi();
+$x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $format = "format_example"; // string | Format of the health data. The only supported format for health data is <code>v1</code>.
 
 try {
-    $result = $api_instance->getMonitoringRecords($identity_domain_id, $service_id, $format);
+    $result = $api_instance->getMonitoringRecords($x_id_tenant_name, $identity_domain_id, $service_id, $format);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling HealthMonitoringApi->getMonitoringRecords: ', $e->getMessage(), PHP_EOL;
@@ -45,6 +46,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **format** | **string**| Format of the health data. The only supported format for health data is &lt;code&gt;v1&lt;/code&gt;. |
