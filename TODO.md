@@ -15,6 +15,7 @@ A list of things to do that could make this generated code more useful:
 * Related to the duplicate methods, also confirm fixing that removes the related duplicate tests:
   * `test/Model/AcceptedResponseTest.php` :: // Test attribute "job_id" `testPropertyJobId()`
   * `test/Model/ViewInstanceTest.php`     :: // Test attribute "cloud_storage_container" `testPropertyCloudStorageContainer()`
-* Fix issue where defining a host is assumed, as otherwise https://localhost is used and `lib/Configuration.php` is ignored (filed a swagger_codegen bug for this)
-* Determine if the SwaggerClient-php/ root dir should be kept
+* Fix issue where defining a host is assumed, as otherwise https://localhost is used and `lib/Configuration.php` is ignored
+  * I filed https://github.com/swagger-api/swagger-codegen/pull/4540 for this
+* Determine if the SwaggerClient-php/ root dir should be kept -- swagger_codegen generates this, currently I move its contents here
 
