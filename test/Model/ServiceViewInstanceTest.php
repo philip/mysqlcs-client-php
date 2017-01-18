@@ -184,14 +184,6 @@ class ServiceViewInstanceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "cloud_storage_container"
-     */
-    public function testPropertyCloudStorageContainer()
-    {
-
-    }
-
-    /**
      * Test attribute "attributes"
      */
     public function testPropertyAttributes()
