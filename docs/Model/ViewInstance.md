@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **subscription** | **string** | The subscription type of the service instance; either &lt;code&gt;MONTHLY&lt;/code&gt; or &lt;code&gt;HOURLY&lt;/code&gt;. | [optional] 
 **metering_frequency** | **string** | The billing frequency of the service instance; either &lt;code&gt;MONTHLY&lt;/code&gt; or &lt;code&gt;HOURLY&lt;/code&gt;. | [optional] 
 **edition** | **string** | The edition of MySQL Server. For example, &lt;code&gt;EE&lt;/code&gt;. | [optional] 
-**cloud_storage_container** | **string** | Name of the Oracle Storage Cloud Service container used to provide storage for MySQL service instance backups. | [optional] 
 **attributes** | [**\Swagger\Client\Model\ServiceAttribute[]**](ServiceAttribute.md) | Array of the service attributes. For example, &lt;code&gt;MYSQL_PORT&lt;/code&gt;, &lt;code&gt;CLOUD_STORAGE_CONTAINER&lt;/code&gt;, &lt;code&gt;LOCAL_BACKUP_VOLUME_SIZE&lt;/code&gt;, etc. | [optional] 
 **components** | [**\Swagger\Client\Model\ViewServiceComponent[]**](ViewServiceComponent.md) | details of each service component. | [optional] 
 **activity_logs** | [**\Swagger\Client\Model\ViewActivityLog[]**](ViewActivityLog.md) | activities of the service instance. | [optional] 

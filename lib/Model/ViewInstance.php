@@ -77,7 +77,6 @@ class ViewInstance implements ArrayAccess
         'subscription' => 'string',
         'metering_frequency' => 'string',
         'edition' => 'string',
-        'cloud_storage_container' => 'string',
         'attributes' => '\Swagger\Client\Model\ServiceAttribute[]',
         'components' => '\Swagger\Client\Model\ViewServiceComponent[]',
         'activity_logs' => '\Swagger\Client\Model\ViewActivityLog[]',
@@ -117,7 +116,6 @@ class ViewInstance implements ArrayAccess
         'subscription' => 'subscription',
         'metering_frequency' => 'meteringFrequency',
         'edition' => 'edition',
-        'cloud_storage_container' => 'cloudStorageContainer',
         'attributes' => 'attributes',
         'components' => 'components',
         'activity_logs' => 'activityLogs',
@@ -157,7 +155,6 @@ class ViewInstance implements ArrayAccess
         'subscription' => 'setSubscription',
         'metering_frequency' => 'setMeteringFrequency',
         'edition' => 'setEdition',
-        'cloud_storage_container' => 'setCloudStorageContainer',
         'attributes' => 'setAttributes',
         'components' => 'setComponents',
         'activity_logs' => 'setActivityLogs',
@@ -197,7 +194,6 @@ class ViewInstance implements ArrayAccess
         'subscription' => 'getSubscription',
         'metering_frequency' => 'getMeteringFrequency',
         'edition' => 'getEdition',
-        'cloud_storage_container' => 'getCloudStorageContainer',
         'attributes' => 'getAttributes',
         'components' => 'getComponents',
         'activity_logs' => 'getActivityLogs',
@@ -248,7 +244,6 @@ class ViewInstance implements ArrayAccess
         $this->container['subscription'] = isset($data['subscription']) ? $data['subscription'] : null;
         $this->container['metering_frequency'] = isset($data['metering_frequency']) ? $data['metering_frequency'] : null;
         $this->container['edition'] = isset($data['edition']) ? $data['edition'] : null;
-        $this->container['cloud_storage_container'] = isset($data['cloud_storage_container']) ? $data['cloud_storage_container'] : null;
         $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
         $this->container['components'] = isset($data['components']) ? $data['components'] : null;
         $this->container['activity_logs'] = isset($data['activity_logs']) ? $data['activity_logs'] : null;
@@ -517,27 +512,6 @@ class ViewInstance implements ArrayAccess
     public function setEdition($edition)
     {
         $this->container['edition'] = $edition;
-
-        return $this;
-    }
-
-    /**
-     * Gets cloud_storage_container
-     * @return string
-     */
-    public function getCloudStorageContainer()
-    {
-        return $this->container['cloud_storage_container'];
-    }
-
-    /**
-     * Sets cloud_storage_container
-     * @param string $cloud_storage_container Name of the Oracle Storage Cloud Service container used to provide storage for MySQL service instance backups.
-     * @return $this
-     */
-    public function setCloudStorageContainer($cloud_storage_container)
-    {
-        $this->container['cloud_storage_container'] = $cloud_storage_container;
 
         return $this;
     }

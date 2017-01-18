@@ -1,6 +1,6 @@
 <?php
 /**
- * ViewInstanceTest
+ * PatchAvailableResponseTest
  *
  * PHP version 5
  *
@@ -42,17 +42,17 @@
 namespace Swagger\Client;
 
 /**
- * ViewInstanceTest Class Doc Comment
+ * PatchAvailableResponseTest Class Doc Comment
  *
  * @category    Class */
-// * @description ViewInstance
+// * @description The response body contains information about the available patches.
 /**
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ViewInstanceTest extends \PHPUnit_Framework_TestCase
+class PatchAvailableResponseTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -88,25 +88,73 @@ class ViewInstanceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "ViewInstance"
+     * Test "PatchAvailableResponse"
      */
-    public function testViewInstance()
+    public function testPatchAvailableResponse()
     {
 
     }
 
     /**
-     * Test attribute "service_id"
+     * Test attribute "available_patch_gui_metadata"
      */
-    public function testPropertyServiceId()
+    public function testPropertyAvailablePatchGuiMetadata()
     {
 
     }
 
     /**
-     * Test attribute "service_name"
+     * Test attribute "patch_id"
      */
-    public function testPropertyServiceName()
+    public function testPropertyPatchId()
+    {
+
+    }
+
+    /**
+     * Test attribute "patch_number"
+     */
+    public function testPropertyPatchNumber()
+    {
+
+    }
+
+    /**
+     * Test attribute "patch_category"
+     */
+    public function testPropertyPatchCategory()
+    {
+
+    }
+
+    /**
+     * Test attribute "patch_severity"
+     */
+    public function testPropertyPatchSeverity()
+    {
+
+    }
+
+    /**
+     * Test attribute "includes_config_upgrade"
+     */
+    public function testPropertyIncludesConfigUpgrade()
+    {
+
+    }
+
+    /**
+     * Test attribute "patch_description"
+     */
+    public function testPropertyPatchDescription()
+    {
+
+    }
+
+    /**
+     * Test attribute "patch_release_url"
+     */
+    public function testPropertyPatchReleaseUrl()
     {
 
     }
@@ -120,14 +168,6 @@ class ViewInstanceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "domain_name"
-     */
-    public function testPropertyDomainName()
-    {
-
-    }
-
-    /**
      * Test attribute "service_version"
      */
     public function testPropertyServiceVersion()
@@ -136,9 +176,105 @@ class ViewInstanceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "release_version"
+     * Test attribute "release_date"
      */
-    public function testPropertyReleaseVersion()
+    public function testPropertyReleaseDate()
+    {
+
+    }
+
+    /**
+     * Test attribute "entry_date"
+     */
+    public function testPropertyEntryDate()
+    {
+
+    }
+
+    /**
+     * Test attribute "entry_user_id"
+     */
+    public function testPropertyEntryUserId()
+    {
+
+    }
+
+    /**
+     * Test attribute "component_patches"
+     */
+    public function testPropertyComponentPatches()
+    {
+
+    }
+
+    /**
+     * Test attribute "patch_components"
+     */
+    public function testPropertyPatchComponents()
+    {
+
+    }
+
+    /**
+     * Test attribute "patch_type"
+     */
+    public function testPropertyPatchType()
+    {
+
+    }
+
+    /**
+     * Test attribute "requires_restart"
+     */
+    public function testPropertyRequiresRestart()
+    {
+
+    }
+
+    /**
+     * Test attribute "service_type_versions"
+     */
+    public function testPropertyServiceTypeVersions()
+    {
+
+    }
+
+    /**
+     * Test attribute "is_deleted"
+     */
+    public function testPropertyIsDeleted()
+    {
+
+    }
+
+    /**
+     * Test attribute "is_customer_visible"
+     */
+    public function testPropertyIsCustomerVisible()
+    {
+
+    }
+
+    /**
+     * Test attribute "is_auto_apply"
+     */
+    public function testPropertyIsAutoApply()
+    {
+
+    }
+
+    /**
+     * Test attribute "induce_down_time"
+     */
+    public function testPropertyInduceDownTime()
+    {
+
+    }
+
+    /**
+     * Test attribute "display_name"
+     */
+    public function testPropertyDisplayName()
     {
 
     }
@@ -152,161 +288,25 @@ class ViewInstanceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "service_level"
+     * Test attribute "supported_strategy"
      */
-    public function testPropertyServiceLevel()
+    public function testPropertySupportedStrategy()
     {
 
     }
 
     /**
-     * Test attribute "subscription"
+     * Test attribute "release_version"
      */
-    public function testPropertySubscription()
+    public function testPropertyReleaseVersion()
     {
 
     }
 
     /**
-     * Test attribute "metering_frequency"
+     * Test attribute "patch_custom_actions"
      */
-    public function testPropertyMeteringFrequency()
-    {
-
-    }
-
-    /**
-     * Test attribute "edition"
-     */
-    public function testPropertyEdition()
-    {
-
-    }
-
-    /**
-     * Test attribute "attributes"
-     */
-    public function testPropertyAttributes()
-    {
-
-    }
-
-    /**
-     * Test attribute "components"
-     */
-    public function testPropertyComponents()
-    {
-
-    }
-
-    /**
-     * Test attribute "activity_logs"
-     */
-    public function testPropertyActivityLogs()
-    {
-
-    }
-
-    /**
-     * Test attribute "service_level_display_name"
-     */
-    public function testPropertyServiceLevelDisplayName()
-    {
-
-    }
-
-    /**
-     * Test attribute "edition_display_name"
-     */
-    public function testPropertyEditionDisplayName()
-    {
-
-    }
-
-    /**
-     * Test attribute "metering_frequency_display_name"
-     */
-    public function testPropertyMeteringFrequencyDisplayName()
-    {
-
-    }
-
-    /**
-     * Test attribute "data_volume_size"
-     */
-    public function testPropertyDataVolumeSize()
-    {
-
-    }
-
-    /**
-     * Test attribute "mysql_port"
-     */
-    public function testPropertyMysqlPort()
-    {
-
-    }
-
-    /**
-     * Test attribute "backup_destination"
-     */
-    public function testPropertyBackupDestination()
-    {
-
-    }
-
-    /**
-     * Test attribute "cloud_storage_container"
-     */
-    public function testPropertyCloudStorageContainer()
-    {
-
-    }
-
-    /**
-     * Test attribute "local_backup_volume_mount"
-     */
-    public function testPropertyLocalBackupVolumeMount()
-    {
-
-    }
-
-    /**
-     * Test attribute "local_backup_volume_size"
-     */
-    public function testPropertyLocalBackupVolumeSize()
-    {
-
-    }
-
-    /**
-     * Test attribute "total_shared_storage"
-     */
-    public function testPropertyTotalSharedStorage()
-    {
-
-    }
-
-    /**
-     * Test attribute "service_state_display_name"
-     */
-    public function testPropertyServiceStateDisplayName()
-    {
-
-    }
-
-    /**
-     * Test attribute "compute_site_name"
-     */
-    public function testPropertyComputeSiteName()
-    {
-
-    }
-
-    /**
-     * Test attribute "patching"
-     */
-    public function testPropertyPatching()
+    public function testPropertyPatchCustomActions()
     {
 
     }
