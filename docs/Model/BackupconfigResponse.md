@@ -1,4 +1,4 @@
-# BackupconfigResponse
+# BackupConfigResponse
 
 ## Properties
 Name | Type | Description | Notes

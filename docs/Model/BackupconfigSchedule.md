@@ -1,4 +1,4 @@
-# BackupconfigSchedule
+# BackupConfigSchedule
 
 ## Properties
 Name | Type | Description | Notes

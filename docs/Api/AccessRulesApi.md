@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **getAccessRules**
-> \Swagger\Client\Model\SecrulesResponse getAccessRules($x_id_tenant_name, $identity_domain_id, $service_id)
+> \Swagger\Client\Model\AccessRulesViewResponse getAccessRules($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View All Access Rules
 
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\SecrulesResponse**](../Model/SecrulesResponse.md)
+[**\Swagger\Client\Model\AccessRulesViewResponse**](../Model/AccessRulesViewResponse.md)
 
 ### Authorization
 
@@ -90,7 +90,7 @@ $api_instance = new Swagger\Client\Api\AccessRulesApi();
 $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
-$payload = new \Swagger\Client\Model\AddsecrulePostrequest(); // \Swagger\Client\Model\AddsecrulePostrequest | The request body defines the details of the access rule to add.
+$payload = new \Swagger\Client\Model\AccessRulesAddPostRequest(); // \Swagger\Client\Model\AccessRulesAddPostRequest | The request body defines the details of the access rule to add.
 
 try {
     $api_instance->insertAccessRule($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
  **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
- **payload** | [**\Swagger\Client\Model\AddsecrulePostrequest**](../Model/\Swagger\Client\Model\AddsecrulePostrequest.md)| The request body defines the details of the access rule to add. |
+ **payload** | [**\Swagger\Client\Model\AccessRulesAddPostRequest**](../Model/\Swagger\Client\Model\AccessRulesAddPostRequest.md)| The request body defines the details of the access rule to add. |
 
 ### Return type
 
@@ -125,7 +125,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateAccessRule**
-> \Swagger\Client\Model\SecrulesDetails updateAccessRule($x_id_tenant_name, $identity_domain_id, $service_id, $rule_name, $payload)
+> \Swagger\Client\Model\AccessRulesDetails updateAccessRule($x_id_tenant_name, $identity_domain_id, $service_id, $rule_name, $payload)
 
 Update an Access Rule
 
@@ -149,7 +149,7 @@ $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $rule_name = "rule_name_example"; // string | Name of the access rule to disable or enable.
-$payload = new \Swagger\Client\Model\UpdatesecrulePutrequest(); // \Swagger\Client\Model\UpdatesecrulePutrequest | The request body defines the details of the disable, enable, or delete request.
+$payload = new \Swagger\Client\Model\AccessRulesUpdatePutRequest(); // \Swagger\Client\Model\AccessRulesUpdatePutRequest | The request body defines the details of the disable, enable, or delete request.
 
 try {
     $result = $api_instance->updateAccessRule($x_id_tenant_name, $identity_domain_id, $service_id, $rule_name, $payload);
@@ -168,11 +168,11 @@ Name | Type | Description  | Notes
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **rule_name** | **string**| Name of the access rule to disable or enable. |
- **payload** | [**\Swagger\Client\Model\UpdatesecrulePutrequest**](../Model/\Swagger\Client\Model\UpdatesecrulePutrequest.md)| The request body defines the details of the disable, enable, or delete request. |
+ **payload** | [**\Swagger\Client\Model\AccessRulesUpdatePutRequest**](../Model/\Swagger\Client\Model\AccessRulesUpdatePutRequest.md)| The request body defines the details of the disable, enable, or delete request. |
 
 ### Return type
 
-[**\Swagger\Client\Model\SecrulesDetails**](../Model/SecrulesDetails.md)
+[**\Swagger\Client\Model\AccessRulesDetails**](../Model/AccessRulesDetails.md)
 
 ### Authorization
 

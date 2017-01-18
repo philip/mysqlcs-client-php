@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **addSshKey**
-> \Swagger\Client\Model\AddsshkeyResponse addSshKey($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name, $payload)
+> \Swagger\Client\Model\SshAddKeyResponse addSshKey($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name, $payload)
 
 Add a New SSH Public Key
 
@@ -36,7 +36,7 @@ $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $credential_name = "credential_name_example"; // string | Credential name to add the SSH public key to. Currently, the only credential name you can use is <code>vmspublickey</code>.
-$payload = new \Swagger\Client\Model\AddsshkeyPostrequest(); // \Swagger\Client\Model\AddsshkeyPostrequest | The request body defines the details of the SSH public key name and value.
+$payload = new \Swagger\Client\Model\SshAddKeyPostRequest(); // \Swagger\Client\Model\SshAddKeyPostRequest | The request body defines the details of the SSH public key name and value.
 
 try {
     $result = $api_instance->addSshKey($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name, $payload);
@@ -55,11 +55,11 @@ Name | Type | Description  | Notes
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **credential_name** | **string**| Credential name to add the SSH public key to. Currently, the only credential name you can use is &lt;code&gt;vmspublickey&lt;/code&gt;. |
- **payload** | [**\Swagger\Client\Model\AddsshkeyPostrequest**](../Model/\Swagger\Client\Model\AddsshkeyPostrequest.md)| The request body defines the details of the SSH public key name and value. |
+ **payload** | [**\Swagger\Client\Model\SshAddKeyPostRequest**](../Model/\Swagger\Client\Model\SshAddKeyPostRequest.md)| The request body defines the details of the SSH public key name and value. |
 
 ### Return type
 
-[**\Swagger\Client\Model\AddsshkeyResponse**](../Model/AddsshkeyResponse.md)
+[**\Swagger\Client\Model\SshAddKeyResponse**](../Model/SshAddKeyResponse.md)
 
 ### Authorization
 
@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSshKeyDescription**
-> \Swagger\Client\Model\KeyDescItem getSshKeyDescription($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name)
+> \Swagger\Client\Model\SshKeyDescriptionItem getSshKeyDescription($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name)
 
 View the SSH Key Description
 
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\KeyDescItem**](../Model/KeyDescItem.md)
+[**\Swagger\Client\Model\SshKeyDescriptionItem**](../Model/SshKeyDescriptionItem.md)
 
 ### Authorization
 
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSshKeyDescriptions**
-> \Swagger\Client\Model\KeydescqueryResponse getSshKeyDescriptions($x_id_tenant_name, $identity_domain_id, $service_name, $credname)
+> \Swagger\Client\Model\SshGetKeyDescriptionResponse getSshKeyDescriptions($x_id_tenant_name, $identity_domain_id, $service_name, $credname)
 
 Retrieve the SSH Key Description Using Query Parameters
 
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\KeydescqueryResponse**](../Model/KeydescqueryResponse.md)
+[**\Swagger\Client\Model\SshGetKeyDescriptionResponse**](../Model/SshGetKeyDescriptionResponse.md)
 
 ### Authorization
 
@@ -191,7 +191,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSshKeyDetails**
-> \Swagger\Client\Model\SshkeyDetailsResponse getSshKeyDetails($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name)
+> \Swagger\Client\Model\SshGetKeyDetailsResponse getSshKeyDetails($x_id_tenant_name, $identity_domain_id, $service_id, $credential_name)
 
 View Details of the SSH Key
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\SshkeyDetailsResponse**](../Model/SshkeyDetailsResponse.md)
+[**\Swagger\Client\Model\SshGetKeyDetailsResponse**](../Model/SshGetKeyDetailsResponse.md)
 
 ### Authorization
 
@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSshKeyValue**
-> \Swagger\Client\Model\KeyvaluequeryResponse getSshKeyValue($x_id_tenant_name, $identity_domain_id, $service_name, $credname)
+> \Swagger\Client\Model\SshGetKeyResponse getSshKeyValue($x_id_tenant_name, $identity_domain_id, $service_name, $credname)
 
 Retrieve the SSH Key Value Using Query Parameters
 
@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\KeyvaluequeryResponse**](../Model/KeyvaluequeryResponse.md)
+[**\Swagger\Client\Model\SshGetKeyResponse**](../Model/SshGetKeyResponse.md)
 
 ### Authorization
 

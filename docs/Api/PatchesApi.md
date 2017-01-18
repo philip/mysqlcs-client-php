@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **applyPatch**
-> \Swagger\Client\Model\AcceptedResponse applyPatch($x_id_tenant_name, $identity_domain_id, $service_id, $patch_id, $payload)
+> \Swagger\Client\Model\PatchAcceptedResponse applyPatch($x_id_tenant_name, $identity_domain_id, $service_id, $patch_id, $payload)
 
 Apply a Patch
 
@@ -39,7 +39,7 @@ $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $patch_id = "patch_id_example"; // string | Patch ID. The patch ID can be retrieved via getting the list of available patches.
-$payload = new \Swagger\Client\Model\PatchRequest(); // \Swagger\Client\Model\PatchRequest | The request body contains details of the patch request. There are no required values, but a value is required. Pass in {} if settings are not required.
+$payload = new \Swagger\Client\Model\PatchApplyRequestRequest(); // \Swagger\Client\Model\PatchApplyRequestRequest | The request body contains details of the patch request. There are no required values, but a value is required. Pass in {} if settings are not required.
 
 try {
     $result = $api_instance->applyPatch($x_id_tenant_name, $identity_domain_id, $service_id, $patch_id, $payload);
@@ -58,11 +58,11 @@ Name | Type | Description  | Notes
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **patch_id** | **string**| Patch ID. The patch ID can be retrieved via getting the list of available patches. |
- **payload** | [**\Swagger\Client\Model\PatchRequest**](../Model/\Swagger\Client\Model\PatchRequest.md)| The request body contains details of the patch request. There are no required values, but a value is required. Pass in {} if settings are not required. |
+ **payload** | [**\Swagger\Client\Model\PatchApplyRequestRequest**](../Model/\Swagger\Client\Model\PatchApplyRequestRequest.md)| The request body contains details of the patch request. There are no required values, but a value is required. Pass in {} if settings are not required. |
 
 ### Return type
 
-[**\Swagger\Client\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Swagger\Client\Model\PatchAcceptedResponse**](../Model/PatchAcceptedResponse.md)
 
 ### Authorization
 
@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **doPatchPrecheck**
-> \Swagger\Client\Model\AcceptedResponse doPatchPrecheck($x_id_tenant_name, $identity_domain_id, $service_id, $patch_id)
+> \Swagger\Client\Model\PatchAcceptedResponse doPatchPrecheck($x_id_tenant_name, $identity_domain_id, $service_id, $patch_id)
 
 Perform a Patching Precheck
 
@@ -121,7 +121,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Swagger\Client\Model\PatchAcceptedResponse**](../Model/PatchAcceptedResponse.md)
 
 ### Authorization
 
@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAppliedPatches**
-> \Swagger\Client\Model\AppliedPatchesResponse getAppliedPatches($x_id_tenant_name, $identity_domain_id, $service_id)
+> \Swagger\Client\Model\PatchAppliedAllResponse getAppliedPatches($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View Applied Patches
 
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\AppliedPatchesResponse**](../Model/AppliedPatchesResponse.md)
+[**\Swagger\Client\Model\PatchAppliedAllResponse**](../Model/PatchAppliedAllResponse.md)
 
 ### Authorization
 
@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAvailablePatches**
-> \Swagger\Client\Model\AvailablePatchesResponse getAvailablePatches($x_id_tenant_name, $identity_domain_id, $service_id)
+> \Swagger\Client\Model\PatchAvailableResponse getAvailablePatches($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View Available Patches
 
@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\AvailablePatchesResponse**](../Model/AvailablePatchesResponse.md)
+[**\Swagger\Client\Model\PatchAvailableResponse**](../Model/PatchAvailableResponse.md)
 
 ### Authorization
 
@@ -249,7 +249,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getPatchStatus**
-> \Swagger\Client\Model\AppliedPatch getPatchStatus($x_id_tenant_name, $identity_domain_id, $service_id, $job_id)
+> \Swagger\Client\Model\PatchAppliedResponse getPatchStatus($x_id_tenant_name, $identity_domain_id, $service_id, $job_id)
 
 View a Patch Operation Status
 
@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\AppliedPatch**](../Model/AppliedPatch.md)
+[**\Swagger\Client\Model\PatchAppliedResponse**](../Model/PatchAppliedResponse.md)
 
 ### Authorization
 
@@ -308,7 +308,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getPrecheckOperations**
-> \Swagger\Client\Model\ViewPrecheckResponse getPrecheckOperations($x_id_tenant_name, $identity_domain_id, $service_id)
+> \Swagger\Client\Model\PatchPrecheckViewResponse getPrecheckOperations($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View All Patching Precheck Operations
 
@@ -351,7 +351,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ViewPrecheckResponse**](../Model/ViewPrecheckResponse.md)
+[**\Swagger\Client\Model\PatchPrecheckViewResponse**](../Model/PatchPrecheckViewResponse.md)
 
 ### Authorization
 
@@ -365,7 +365,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getPrecheckStatus**
-> \Swagger\Client\Model\ViewPrecheckResponse getPrecheckStatus($x_id_tenant_name, $identity_domain_id, $service_id, $job_id)
+> \Swagger\Client\Model\PatchPrecheckViewResponse getPrecheckStatus($x_id_tenant_name, $identity_domain_id, $service_id, $job_id)
 
 View the Status of a Patching Precheck Operation
 
@@ -410,7 +410,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ViewPrecheckResponse**](../Model/ViewPrecheckResponse.md)
+[**\Swagger\Client\Model\PatchPrecheckViewResponse**](../Model/PatchPrecheckViewResponse.md)
 
 ### Authorization
 
@@ -424,7 +424,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **rollbackPatch**
-> \Swagger\Client\Model\AcceptedResponse rollbackPatch($x_id_tenant_name, $identity_domain_id, $service_id, $rollback_id, $payload)
+> \Swagger\Client\Model\PatchAcceptedResponse rollbackPatch($x_id_tenant_name, $identity_domain_id, $service_id, $rollback_id, $payload)
 
 Rollback a Patch
 
@@ -448,7 +448,7 @@ $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $rollback_id = "rollback_id_example"; // string | ID of the rollback that is associated to the completed patching operation.
-$payload = new \Swagger\Client\Model\RollbackRequest(); // \Swagger\Client\Model\RollbackRequest | The request body contains a note about the rollback request.
+$payload = new \Swagger\Client\Model\PatchRollbackRequest(); // \Swagger\Client\Model\PatchRollbackRequest | The request body contains a note about the rollback request.
 
 try {
     $result = $api_instance->rollbackPatch($x_id_tenant_name, $identity_domain_id, $service_id, $rollback_id, $payload);
@@ -467,11 +467,11 @@ Name | Type | Description  | Notes
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **rollback_id** | **string**| ID of the rollback that is associated to the completed patching operation. |
- **payload** | [**\Swagger\Client\Model\RollbackRequest**](../Model/\Swagger\Client\Model\RollbackRequest.md)| The request body contains a note about the rollback request. |
+ **payload** | [**\Swagger\Client\Model\PatchRollbackRequest**](../Model/\Swagger\Client\Model\PatchRollbackRequest.md)| The request body contains a note about the rollback request. |
 
 ### Return type
 
-[**\Swagger\Client\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Swagger\Client\Model\PatchAcceptedResponse**](../Model/PatchAcceptedResponse.md)
 
 ### Authorization
 

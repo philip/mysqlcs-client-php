@@ -18,7 +18,7 @@ if [ "$git_repo_id" = "" ]; then
 fi
 
 if [ "$release_note" = "" ]; then
-    release_note="Regenerated REST API Client using swagger_codegen to test possible changes"
+    release_note="Regenerated REST API Client using swagger_codegen and test swagger file"
     echo "[INFO] No command line input provided. Set \$release_note to $release_note"
 fi
 

@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **deleteBackup**
-> \Swagger\Client\Model\AcceptedResponse deleteBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\BackupAcceptedResponse deleteBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Delete a Backup (Asynchronous)
 
@@ -41,7 +41,7 @@ $api_instance = new Swagger\Client\Api\BackupsApi();
 $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
-$payload = new \Swagger\Client\Model\DeleteBackupRequest(); // \Swagger\Client\Model\DeleteBackupRequest | The request body contains details of the delete backup request. You must specify at least one attribute.
+$payload = new \Swagger\Client\Model\BackupDeleteRequest(); // \Swagger\Client\Model\BackupDeleteRequest | The request body contains details of the delete backup request. You must specify at least one attribute.
 
 try {
     $result = $api_instance->deleteBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
@@ -59,11 +59,11 @@ Name | Type | Description  | Notes
  **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
- **payload** | [**\Swagger\Client\Model\DeleteBackupRequest**](../Model/\Swagger\Client\Model\DeleteBackupRequest.md)| The request body contains details of the delete backup request. You must specify at least one attribute. |
+ **payload** | [**\Swagger\Client\Model\BackupDeleteRequest**](../Model/\Swagger\Client\Model\BackupDeleteRequest.md)| The request body contains details of the delete backup request. You must specify at least one attribute. |
 
 ### Return type
 
-[**\Swagger\Client\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Swagger\Client\Model\BackupAcceptedResponse**](../Model/BackupAcceptedResponse.md)
 
 ### Authorization
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAllBackups**
-> \Swagger\Client\Model\ViewAllBackupsResponse getAllBackups($x_id_tenant_name, $identity_domain_id, $service_id)
+> \Swagger\Client\Model\BackupViewAllResponse getAllBackups($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View All Backups
 
@@ -120,7 +120,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ViewAllBackupsResponse**](../Model/ViewAllBackupsResponse.md)
+[**\Swagger\Client\Model\BackupViewAllResponse**](../Model/BackupViewAllResponse.md)
 
 ### Authorization
 
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAllDeletedBackups**
-> \Swagger\Client\Model\ViewAllDeletedResponse getAllDeletedBackups($x_id_tenant_name, $identity_domain_id, $service_id)
+> \Swagger\Client\Model\BackupViewAllDeletedResponse getAllDeletedBackups($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View All Deleted Backups
 
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ViewAllDeletedResponse**](../Model/ViewAllDeletedResponse.md)
+[**\Swagger\Client\Model\BackupViewAllDeletedResponse**](../Model/BackupViewAllDeletedResponse.md)
 
 ### Authorization
 
@@ -191,7 +191,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getBackup**
-> \Swagger\Client\Model\ViewBackup getBackup($x_id_tenant_name, $identity_domain_id, $service_id, $backup_id, $include_linked_details)
+> \Swagger\Client\Model\BackupViewResponse getBackup($x_id_tenant_name, $identity_domain_id, $service_id, $backup_id, $include_linked_details)
 
 View a Backup
 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ViewBackup**](../Model/ViewBackup.md)
+[**\Swagger\Client\Model\BackupViewResponse**](../Model/BackupViewResponse.md)
 
 ### Authorization
 
@@ -252,7 +252,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getBackupConfiguration**
-> \Swagger\Client\Model\BackupconfigResponse getBackupConfiguration($x_id_tenant_name, $identity_domain_id, $service_id)
+> \Swagger\Client\Model\BackupConfigResponse getBackupConfiguration($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View the Backup Configuration
 
@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\BackupconfigResponse**](../Model/BackupconfigResponse.md)
+[**\Swagger\Client\Model\BackupConfigResponse**](../Model/BackupConfigResponse.md)
 
 ### Authorization
 
@@ -309,7 +309,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getDeletedBackup**
-> \Swagger\Client\Model\ViewDeletedResponse getDeletedBackup($x_id_tenant_name, $identity_domain_id, $service_id, $job_id)
+> \Swagger\Client\Model\BackupViewDeletedResponse getDeletedBackup($x_id_tenant_name, $identity_domain_id, $service_id, $job_id)
 
 View a Deleted Backup
 
@@ -354,7 +354,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ViewDeletedResponse**](../Model/ViewDeletedResponse.md)
+[**\Swagger\Client\Model\BackupViewDeletedResponse**](../Model/BackupViewDeletedResponse.md)
 
 ### Authorization
 
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getRestoreBackupOperations**
-> \Swagger\Client\Model\ViewAllRestorationsResponse getRestoreBackupOperations($x_id_tenant_name, $identity_domain_id, $service_id)
+> \Swagger\Client\Model\BackupViewAllRestorationsResponse getRestoreBackupOperations($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View All Restoration Operations
 
@@ -411,7 +411,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ViewAllRestorationsResponse**](../Model/ViewAllRestorationsResponse.md)
+[**\Swagger\Client\Model\BackupViewAllRestorationsResponse**](../Model/BackupViewAllRestorationsResponse.md)
 
 ### Authorization
 
@@ -425,7 +425,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getRestoreBackupStatus**
-> \Swagger\Client\Model\RestoreHistory getRestoreBackupStatus($x_id_tenant_name, $identity_domain_id, $service_id, $job_id)
+> \Swagger\Client\Model\BackupRestoreHistory getRestoreBackupStatus($x_id_tenant_name, $identity_domain_id, $service_id, $job_id)
 
 View the Status of a Restoration Operation
 
@@ -470,7 +470,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\RestoreHistory**](../Model/RestoreHistory.md)
+[**\Swagger\Client\Model\BackupRestoreHistory**](../Model/BackupRestoreHistory.md)
 
 ### Authorization
 
@@ -484,7 +484,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **restoreBackup**
-> \Swagger\Client\Model\AcceptedResponse restoreBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\BackupAcceptedResponse restoreBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Restore a Service Instance from Backup
 
@@ -507,7 +507,7 @@ $api_instance = new Swagger\Client\Api\BackupsApi();
 $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
-$payload = new \Swagger\Client\Model\RestorationPostrequest(); // \Swagger\Client\Model\RestorationPostrequest | The request body defines the details of the restoration request.
+$payload = new \Swagger\Client\Model\BackupRestorationPostRequest(); // \Swagger\Client\Model\BackupRestorationPostRequest | The request body defines the details of the restoration request.
 
 try {
     $result = $api_instance->restoreBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
@@ -525,11 +525,11 @@ Name | Type | Description  | Notes
  **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
- **payload** | [**\Swagger\Client\Model\RestorationPostrequest**](../Model/\Swagger\Client\Model\RestorationPostrequest.md)| The request body defines the details of the restoration request. |
+ **payload** | [**\Swagger\Client\Model\BackupRestorationPostRequest**](../Model/\Swagger\Client\Model\BackupRestorationPostRequest.md)| The request body defines the details of the restoration request. |
 
 ### Return type
 
-[**\Swagger\Client\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Swagger\Client\Model\BackupAcceptedResponse**](../Model/BackupAcceptedResponse.md)
 
 ### Authorization
 
@@ -543,7 +543,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **startBackup**
-> \Swagger\Client\Model\AcceptedResponse startBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\BackupAcceptedResponse startBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Initiate an On-demand Backup
 
@@ -566,7 +566,7 @@ $api_instance = new Swagger\Client\Api\BackupsApi();
 $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
-$payload = new \Swagger\Client\Model\OndemandRequest(); // \Swagger\Client\Model\OndemandRequest | The request body contains details of the on-demand backup request.
+$payload = new \Swagger\Client\Model\BackupOndemandRequest(); // \Swagger\Client\Model\BackupOndemandRequest | The request body contains details of the on-demand backup request.
 
 try {
     $result = $api_instance->startBackup($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
@@ -584,11 +584,11 @@ Name | Type | Description  | Notes
  **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
- **payload** | [**\Swagger\Client\Model\OndemandRequest**](../Model/\Swagger\Client\Model\OndemandRequest.md)| The request body contains details of the on-demand backup request. |
+ **payload** | [**\Swagger\Client\Model\BackupOndemandRequest**](../Model/\Swagger\Client\Model\BackupOndemandRequest.md)| The request body contains details of the on-demand backup request. |
 
 ### Return type
 
-[**\Swagger\Client\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Swagger\Client\Model\BackupAcceptedResponse**](../Model/BackupAcceptedResponse.md)
 
 ### Authorization
 
@@ -602,7 +602,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateBackupConfiguration**
-> \Swagger\Client\Model\BackupconfigResponse updateBackupConfiguration($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\BackupConfigResponse updateBackupConfiguration($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Update the Backup Configuration
 
@@ -625,7 +625,7 @@ $api_instance = new Swagger\Client\Api\BackupsApi();
 $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
-$payload = new \Swagger\Client\Model\BackupconfigPostrequest(); // \Swagger\Client\Model\BackupconfigPostrequest | The request body defines the details of the backup configuration update request. Specify only those attributes that you want to update.
+$payload = new \Swagger\Client\Model\BackupConfigPostRequest(); // \Swagger\Client\Model\BackupConfigPostRequest | The request body defines the details of the backup configuration update request. Specify only those attributes that you want to update.
 
 try {
     $result = $api_instance->updateBackupConfiguration($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
@@ -643,11 +643,11 @@ Name | Type | Description  | Notes
  **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
- **payload** | [**\Swagger\Client\Model\BackupconfigPostrequest**](../Model/\Swagger\Client\Model\BackupconfigPostrequest.md)| The request body defines the details of the backup configuration update request. Specify only those attributes that you want to update. |
+ **payload** | [**\Swagger\Client\Model\BackupConfigPostRequest**](../Model/\Swagger\Client\Model\BackupConfigPostRequest.md)| The request body defines the details of the backup configuration update request. Specify only those attributes that you want to update. |
 
 ### Return type
 
-[**\Swagger\Client\Model\BackupconfigResponse**](../Model/BackupconfigResponse.md)
+[**\Swagger\Client\Model\BackupConfigResponse**](../Model/BackupConfigResponse.md)
 
 ### Authorization
 
