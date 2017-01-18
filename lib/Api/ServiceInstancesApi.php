@@ -109,8 +109,8 @@ class ServiceInstancesApi
      *
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
-     * @param \Swagger\Client\Model\CreateInstance $payload The request body defines the details of the service instance creation request (required)
-     * @return \Swagger\Client\Model\AcceptedResponse
+     * @param \Swagger\Client\Model\ServiceCreateInstanceRequest $payload The request body defines the details of the service instance creation request (required)
+     * @return \Swagger\Client\Model\ServiceAcceptedResponse
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function addInstance($x_id_tenant_name, $identity_domain_id, $payload)
@@ -126,8 +126,8 @@ class ServiceInstancesApi
      *
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
-     * @param \Swagger\Client\Model\CreateInstance $payload The request body defines the details of the service instance creation request (required)
-     * @return Array of \Swagger\Client\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @param \Swagger\Client\Model\ServiceCreateInstanceRequest $payload The request body defines the details of the service instance creation request (required)
+     * @return Array of \Swagger\Client\Model\ServiceAcceptedResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function addInstanceWithHttpInfo($x_id_tenant_name, $identity_domain_id, $payload)
@@ -200,15 +200,15 @@ class ServiceInstancesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\AcceptedResponse',
+                '\Swagger\Client\Model\ServiceAcceptedResponse',
                 '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\AcceptedResponse', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ServiceAcceptedResponse', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 202:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\AcceptedResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ServiceAcceptedResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -225,8 +225,8 @@ class ServiceInstancesApi
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $service_id Name of the Oracle MySQL Cloud Service instance. (required)
-     * @param \Swagger\Client\Model\AddStoragePostrequest $payload The request body defines the details of the request. (required)
-     * @return \Swagger\Client\Model\AcceptedResponse
+     * @param \Swagger\Client\Model\ServiceAddStoragePostRequest $payload The request body defines the details of the request. (required)
+     * @return \Swagger\Client\Model\ServiceAcceptedResponse
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function addInstanceStorage($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
@@ -243,8 +243,8 @@ class ServiceInstancesApi
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $service_id Name of the Oracle MySQL Cloud Service instance. (required)
-     * @param \Swagger\Client\Model\AddStoragePostrequest $payload The request body defines the details of the request. (required)
-     * @return Array of \Swagger\Client\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @param \Swagger\Client\Model\ServiceAddStoragePostRequest $payload The request body defines the details of the request. (required)
+     * @return Array of \Swagger\Client\Model\ServiceAcceptedResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function addInstanceStorageWithHttpInfo($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
@@ -329,15 +329,15 @@ class ServiceInstancesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\AcceptedResponse',
+                '\Swagger\Client\Model\ServiceAcceptedResponse',
                 '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/storage/add'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\AcceptedResponse', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ServiceAcceptedResponse', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 202:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\AcceptedResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ServiceAcceptedResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -354,8 +354,8 @@ class ServiceInstancesApi
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $service_id Name of the Oracle MySQL Cloud Service instance. (required)
-     * @param \Swagger\Client\Model\DeleteInstanceRequest $payload The request body is reserved for options, although no options exist at this time. Instead, pass in an empty object, such as {}. (required)
-     * @return \Swagger\Client\Model\AcceptedResponse
+     * @param \Swagger\Client\Model\ServiceDeleteInstancePutRequest $payload The request body is reserved for options, although no options exist at this time. Instead, pass in an empty object, such as {}. (required)
+     * @return \Swagger\Client\Model\ServiceAcceptedResponse
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function deleteInstance($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
@@ -372,8 +372,8 @@ class ServiceInstancesApi
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $service_id Name of the Oracle MySQL Cloud Service instance. (required)
-     * @param \Swagger\Client\Model\DeleteInstanceRequest $payload The request body is reserved for options, although no options exist at this time. Instead, pass in an empty object, such as {}. (required)
-     * @return Array of \Swagger\Client\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @param \Swagger\Client\Model\ServiceDeleteInstancePutRequest $payload The request body is reserved for options, although no options exist at this time. Instead, pass in an empty object, such as {}. (required)
+     * @return Array of \Swagger\Client\Model\ServiceAcceptedResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function deleteInstanceWithHttpInfo($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
@@ -458,15 +458,15 @@ class ServiceInstancesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\AcceptedResponse',
+                '\Swagger\Client\Model\ServiceAcceptedResponse',
                 '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\AcceptedResponse', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ServiceAcceptedResponse', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 202:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\AcceptedResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ServiceAcceptedResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -482,7 +482,7 @@ class ServiceInstancesApi
      *
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
-     * @return \Swagger\Client\Model\ViewAllInstances
+     * @return \Swagger\Client\Model\ServiceViewAllInstances
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function getAllInstances($x_id_tenant_name, $identity_domain_id)
@@ -498,7 +498,7 @@ class ServiceInstancesApi
      *
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
-     * @return Array of \Swagger\Client\Model\ViewAllInstances, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\ServiceViewAllInstances, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function getAllInstancesWithHttpInfo($x_id_tenant_name, $identity_domain_id)
@@ -562,15 +562,15 @@ class ServiceInstancesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\ViewAllInstances',
+                '\Swagger\Client\Model\ServiceViewAllInstances',
                 '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ViewAllInstances', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ServiceViewAllInstances', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ViewAllInstances', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ServiceViewAllInstances', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -587,7 +587,7 @@ class ServiceInstancesApi
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $service_id Name of the Oracle MySQL Cloud Service instance. (required)
-     * @return \Swagger\Client\Model\ViewInstance
+     * @return \Swagger\Client\Model\ServiceViewInstance
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function getInstance($x_id_tenant_name, $identity_domain_id, $service_id)
@@ -604,7 +604,7 @@ class ServiceInstancesApi
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $service_id Name of the Oracle MySQL Cloud Service instance. (required)
-     * @return Array of \Swagger\Client\Model\ViewInstance, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\ServiceViewInstance, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function getInstanceWithHttpInfo($x_id_tenant_name, $identity_domain_id, $service_id)
@@ -680,15 +680,15 @@ class ServiceInstancesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\ViewInstance',
+                '\Swagger\Client\Model\ServiceViewInstance',
                 '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ViewInstance', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ServiceViewInstance', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ViewInstance', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ServiceViewInstance', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -705,7 +705,7 @@ class ServiceInstancesApi
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $job_id Job ID. (required)
-     * @return \Swagger\Client\Model\ViewActivityLog
+     * @return \Swagger\Client\Model\ServiceViewActivityLog
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function getJobStatus($x_id_tenant_name, $identity_domain_id, $job_id)
@@ -722,7 +722,7 @@ class ServiceInstancesApi
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $job_id Job ID. (required)
-     * @return Array of \Swagger\Client\Model\ViewActivityLog, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\ServiceViewActivityLog, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function getJobStatusWithHttpInfo($x_id_tenant_name, $identity_domain_id, $job_id)
@@ -798,15 +798,15 @@ class ServiceInstancesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\ViewActivityLog',
+                '\Swagger\Client\Model\ServiceViewActivityLog',
                 '/paas/api/v1.1/activitylog/{identityDomainId}/job/{jobId}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ViewActivityLog', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ServiceViewActivityLog', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ViewActivityLog', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ServiceViewActivityLog', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -823,8 +823,8 @@ class ServiceInstancesApi
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $service_id Name of the Oracle MySQL Cloud Service instance. (required)
-     * @param \Swagger\Client\Model\ScalePostrequest $payload The request body defines the details of the request. (required)
-     * @return \Swagger\Client\Model\AcceptedResponse
+     * @param \Swagger\Client\Model\ServiceScalePostRequest $payload The request body defines the details of the request. (required)
+     * @return \Swagger\Client\Model\ServiceAcceptedResponse
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function scaleInstance($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
@@ -841,8 +841,8 @@ class ServiceInstancesApi
      * @param string $x_id_tenant_name Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $service_id Name of the Oracle MySQL Cloud Service instance. (required)
-     * @param \Swagger\Client\Model\ScalePostrequest $payload The request body defines the details of the request. (required)
-     * @return Array of \Swagger\Client\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @param \Swagger\Client\Model\ServiceScalePostRequest $payload The request body defines the details of the request. (required)
+     * @return Array of \Swagger\Client\Model\ServiceAcceptedResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function scaleInstanceWithHttpInfo($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
@@ -927,15 +927,15 @@ class ServiceInstancesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\AcceptedResponse',
+                '\Swagger\Client\Model\ServiceAcceptedResponse',
                 '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/hosts/scale'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\AcceptedResponse', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ServiceAcceptedResponse', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 202:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\AcceptedResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ServiceAcceptedResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -953,8 +953,8 @@ class ServiceInstancesApi
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $service_id Name of the Oracle MySQL Cloud Service instance. (required)
      * @param string $function Action of controlling the lifecycle state. {function} will be one of start, stop, or restart. (required)
-     * @param \Swagger\Client\Model\StopStartRestartInstance $payload The request body defines the details of the service instance request. (required)
-     * @return \Swagger\Client\Model\AcceptedResponse
+     * @param \Swagger\Client\Model\ServiceChangeInstanceStatusRequest $payload The request body defines the details of the service instance request. (required)
+     * @return \Swagger\Client\Model\ServiceAcceptedResponse
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function updateInstanceStatus($x_id_tenant_name, $identity_domain_id, $service_id, $function, $payload)
@@ -972,8 +972,8 @@ class ServiceInstancesApi
      * @param string $identity_domain_id Name of the identity domain for the MySQL Cloud Service account. (required)
      * @param string $service_id Name of the Oracle MySQL Cloud Service instance. (required)
      * @param string $function Action of controlling the lifecycle state. {function} will be one of start, stop, or restart. (required)
-     * @param \Swagger\Client\Model\StopStartRestartInstance $payload The request body defines the details of the service instance request. (required)
-     * @return Array of \Swagger\Client\Model\AcceptedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @param \Swagger\Client\Model\ServiceChangeInstanceStatusRequest $payload The request body defines the details of the service instance request. (required)
+     * @return Array of \Swagger\Client\Model\ServiceAcceptedResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function updateInstanceStatusWithHttpInfo($x_id_tenant_name, $identity_domain_id, $service_id, $function, $payload)
@@ -1070,15 +1070,15 @@ class ServiceInstancesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\AcceptedResponse',
+                '\Swagger\Client\Model\ServiceAcceptedResponse',
                 '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/hosts/{function}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\AcceptedResponse', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ServiceAcceptedResponse', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 202:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\AcceptedResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ServiceAcceptedResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

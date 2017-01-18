@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **addInstance**
-> \Swagger\Client\Model\AcceptedResponse addInstance($x_id_tenant_name, $identity_domain_id, $payload)
+> \Swagger\Client\Model\ServiceAcceptedResponse addInstance($x_id_tenant_name, $identity_domain_id, $payload)
 
 Create an Oracle MySQL Cloud Service Instance
 
@@ -37,7 +37,7 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-ID-TENANT-
 $api_instance = new Swagger\Client\Api\ServiceInstancesApi();
 $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
-$payload = new \Swagger\Client\Model\CreateInstance(); // \Swagger\Client\Model\CreateInstance | The request body defines the details of the service instance creation request
+$payload = new \Swagger\Client\Model\ServiceCreateInstanceRequest(); // \Swagger\Client\Model\ServiceCreateInstanceRequest | The request body defines the details of the service instance creation request
 
 try {
     $result = $api_instance->addInstance($x_id_tenant_name, $identity_domain_id, $payload);
@@ -54,11 +54,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
- **payload** | [**\Swagger\Client\Model\CreateInstance**](../Model/\Swagger\Client\Model\CreateInstance.md)| The request body defines the details of the service instance creation request |
+ **payload** | [**\Swagger\Client\Model\ServiceCreateInstanceRequest**](../Model/\Swagger\Client\Model\ServiceCreateInstanceRequest.md)| The request body defines the details of the service instance creation request |
 
 ### Return type
 
-[**\Swagger\Client\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Swagger\Client\Model\ServiceAcceptedResponse**](../Model/ServiceAcceptedResponse.md)
 
 ### Authorization
 
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **addInstanceStorage**
-> \Swagger\Client\Model\AcceptedResponse addInstanceStorage($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\ServiceAcceptedResponse addInstanceStorage($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Add storage to a MySQL Cloud Service instance
 
@@ -95,7 +95,7 @@ $api_instance = new Swagger\Client\Api\ServiceInstancesApi();
 $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
-$payload = new \Swagger\Client\Model\AddStoragePostrequest(); // \Swagger\Client\Model\AddStoragePostrequest | The request body defines the details of the request.
+$payload = new \Swagger\Client\Model\ServiceAddStoragePostRequest(); // \Swagger\Client\Model\ServiceAddStoragePostRequest | The request body defines the details of the request.
 
 try {
     $result = $api_instance->addInstanceStorage($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
@@ -113,11 +113,11 @@ Name | Type | Description  | Notes
  **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
- **payload** | [**\Swagger\Client\Model\AddStoragePostrequest**](../Model/\Swagger\Client\Model\AddStoragePostrequest.md)| The request body defines the details of the request. |
+ **payload** | [**\Swagger\Client\Model\ServiceAddStoragePostRequest**](../Model/\Swagger\Client\Model\ServiceAddStoragePostRequest.md)| The request body defines the details of the request. |
 
 ### Return type
 
-[**\Swagger\Client\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Swagger\Client\Model\ServiceAcceptedResponse**](../Model/ServiceAcceptedResponse.md)
 
 ### Authorization
 
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteInstance**
-> \Swagger\Client\Model\AcceptedResponse deleteInstance($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\ServiceAcceptedResponse deleteInstance($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Delete a Service Instance
 
@@ -154,7 +154,7 @@ $api_instance = new Swagger\Client\Api\ServiceInstancesApi();
 $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
-$payload = new \Swagger\Client\Model\DeleteInstanceRequest(); // \Swagger\Client\Model\DeleteInstanceRequest | The request body is reserved for options, although no options exist at this time. Instead, pass in an empty object, such as {}.
+$payload = new \Swagger\Client\Model\ServiceDeleteInstancePutRequest(); // \Swagger\Client\Model\ServiceDeleteInstancePutRequest | The request body is reserved for options, although no options exist at this time. Instead, pass in an empty object, such as {}.
 
 try {
     $result = $api_instance->deleteInstance($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
@@ -172,11 +172,11 @@ Name | Type | Description  | Notes
  **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
- **payload** | [**\Swagger\Client\Model\DeleteInstanceRequest**](../Model/\Swagger\Client\Model\DeleteInstanceRequest.md)| The request body is reserved for options, although no options exist at this time. Instead, pass in an empty object, such as {}. |
+ **payload** | [**\Swagger\Client\Model\ServiceDeleteInstancePutRequest**](../Model/\Swagger\Client\Model\ServiceDeleteInstancePutRequest.md)| The request body is reserved for options, although no options exist at this time. Instead, pass in an empty object, such as {}. |
 
 ### Return type
 
-[**\Swagger\Client\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Swagger\Client\Model\ServiceAcceptedResponse**](../Model/ServiceAcceptedResponse.md)
 
 ### Authorization
 
@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAllInstances**
-> \Swagger\Client\Model\ViewAllInstances getAllInstances($x_id_tenant_name, $identity_domain_id)
+> \Swagger\Client\Model\ServiceViewAllInstances getAllInstances($x_id_tenant_name, $identity_domain_id)
 
 View All Service Instances
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ViewAllInstances**](../Model/ViewAllInstances.md)
+[**\Swagger\Client\Model\ServiceViewAllInstances**](../Model/ServiceViewAllInstances.md)
 
 ### Authorization
 
@@ -245,7 +245,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getInstance**
-> \Swagger\Client\Model\ViewInstance getInstance($x_id_tenant_name, $identity_domain_id, $service_id)
+> \Swagger\Client\Model\ServiceViewInstance getInstance($x_id_tenant_name, $identity_domain_id, $service_id)
 
 View a Service Instance
 
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ViewInstance**](../Model/ViewInstance.md)
+[**\Swagger\Client\Model\ServiceViewInstance**](../Model/ServiceViewInstance.md)
 
 ### Authorization
 
@@ -302,7 +302,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getJobStatus**
-> \Swagger\Client\Model\ViewActivityLog getJobStatus($x_id_tenant_name, $identity_domain_id, $job_id)
+> \Swagger\Client\Model\ServiceViewActivityLog getJobStatus($x_id_tenant_name, $identity_domain_id, $job_id)
 
 View the Activity Log of a Job
 
@@ -345,7 +345,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ViewActivityLog**](../Model/ViewActivityLog.md)
+[**\Swagger\Client\Model\ServiceViewActivityLog**](../Model/ServiceViewActivityLog.md)
 
 ### Authorization
 
@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **scaleInstance**
-> \Swagger\Client\Model\AcceptedResponse scaleInstance($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
+> \Swagger\Client\Model\ServiceAcceptedResponse scaleInstance($x_id_tenant_name, $identity_domain_id, $service_id, $payload)
 
 Scale a MySQL Cloud Service instance
 
@@ -382,7 +382,7 @@ $api_instance = new Swagger\Client\Api\ServiceInstancesApi();
 $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
-$payload = new \Swagger\Client\Model\ScalePostrequest(); // \Swagger\Client\Model\ScalePostrequest | The request body defines the details of the request.
+$payload = new \Swagger\Client\Model\ServiceScalePostRequest(); // \Swagger\Client\Model\ServiceScalePostRequest | The request body defines the details of the request.
 
 try {
     $result = $api_instance->scaleInstance($x_id_tenant_name, $identity_domain_id, $service_id, $payload);
@@ -400,11 +400,11 @@ Name | Type | Description  | Notes
  **x_id_tenant_name** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
- **payload** | [**\Swagger\Client\Model\ScalePostrequest**](../Model/\Swagger\Client\Model\ScalePostrequest.md)| The request body defines the details of the request. |
+ **payload** | [**\Swagger\Client\Model\ServiceScalePostRequest**](../Model/\Swagger\Client\Model\ServiceScalePostRequest.md)| The request body defines the details of the request. |
 
 ### Return type
 
-[**\Swagger\Client\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Swagger\Client\Model\ServiceAcceptedResponse**](../Model/ServiceAcceptedResponse.md)
 
 ### Authorization
 
@@ -418,7 +418,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateInstanceStatus**
-> \Swagger\Client\Model\AcceptedResponse updateInstanceStatus($x_id_tenant_name, $identity_domain_id, $service_id, $function, $payload)
+> \Swagger\Client\Model\ServiceAcceptedResponse updateInstanceStatus($x_id_tenant_name, $identity_domain_id, $service_id, $function, $payload)
 
 Start, Stop, or Restart a Service Instance
 
@@ -442,7 +442,7 @@ $x_id_tenant_name = "x_id_tenant_name_example"; // string | Name of the identity
 $identity_domain_id = "identity_domain_id_example"; // string | Name of the identity domain for the MySQL Cloud Service account.
 $service_id = "service_id_example"; // string | Name of the Oracle MySQL Cloud Service instance.
 $function = "function_example"; // string | Action of controlling the lifecycle state. {function} will be one of start, stop, or restart.
-$payload = new \Swagger\Client\Model\StopStartRestartInstance(); // \Swagger\Client\Model\StopStartRestartInstance | The request body defines the details of the service instance request.
+$payload = new \Swagger\Client\Model\ServiceChangeInstanceStatusRequest(); // \Swagger\Client\Model\ServiceChangeInstanceStatusRequest | The request body defines the details of the service instance request.
 
 try {
     $result = $api_instance->updateInstanceStatus($x_id_tenant_name, $identity_domain_id, $service_id, $function, $payload);
@@ -461,11 +461,11 @@ Name | Type | Description  | Notes
  **identity_domain_id** | **string**| Name of the identity domain for the MySQL Cloud Service account. |
  **service_id** | **string**| Name of the Oracle MySQL Cloud Service instance. |
  **function** | **string**| Action of controlling the lifecycle state. {function} will be one of start, stop, or restart. |
- **payload** | [**\Swagger\Client\Model\StopStartRestartInstance**](../Model/\Swagger\Client\Model\StopStartRestartInstance.md)| The request body defines the details of the service instance request. |
+ **payload** | [**\Swagger\Client\Model\ServiceChangeInstanceStatusRequest**](../Model/\Swagger\Client\Model\ServiceChangeInstanceStatusRequest.md)| The request body defines the details of the service instance request. |
 
 ### Return type
 
-[**\Swagger\Client\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Swagger\Client\Model\ServiceAcceptedResponse**](../Model/ServiceAcceptedResponse.md)
 
 ### Authorization
 
