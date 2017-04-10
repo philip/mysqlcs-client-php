@@ -1,0 +1,3387 @@
+swagger: '2.0'
+info:
+  title: REST API for MySQL Cloud Service
+  description: Use the REST API to manage MySQL Cloud Service instances
+  version: 2017.01.21
+  x-priority: 5
+  x-summary: Use the REST API to manage MySQL Cloud Service instances
+tags:
+  - name: Access Rules
+    description: View and manage network access rules.
+  - name: Backups
+    description: Backup and restore the Oracle MySQL Cloud Service instances.
+  - name: Health Monitoring
+    description: >-
+      Returns health monitoring data for the Oracle MySQL Cloud Service
+      instances.
+  - name: Patches
+    description: Patch MySQL Cloud Service instances.
+  - name: SSH Access
+    description: View and manage SSH access.
+  - name: Service Instances
+    description: Create and manage MySQL Cloud Service instances.
+schemes:
+  - https
+securityDefinitions:
+  defaultBasicAuth:
+    type: basic
+    description: HTTP Basic Authentication
+  defaultApiKey:
+    type: apiKey
+    in: header
+    name: X-ID-TENANT-NAME
+    description: >-
+      Identity domain ID (on Oracle Public Cloud) or tenant name (on Oracle
+      Cloud Machine)
+security:
+  - defaultBasicAuth: []
+  - defaultApiKey: []
+parameters:
+  CommonHeaderTenant:
+    name: X-ID-TENANT-NAME
+    in: header
+    description: Name of the identity domain for the MySQL Cloud Service account.
+    required: true
+    type: string
+  CommonPathIdentityDomainId:
+    name: identityDomainId
+    in: path
+    description: Name of the identity domain for the MySQL Cloud Service account.
+    required: true
+    type: string
+  CommonPathServiceId:
+    name: serviceId
+    in: path
+    description: Name of the Oracle MySQL Cloud Service instance.
+    required: true
+    type: string
+  CommonPathCredentialName:
+    name: credentialName
+    in: path
+    description: >-
+      Credential name associated with the SSH public key. Currently, the only
+      credential name you can use is <code>vmspublickey</code>.
+    required: true
+    type: string
+  CommonQueryServiceName:
+    name: serviceName
+    in: query
+    description: Name of the Oracle MySQL Cloud Service instance.
+    required: true
+    type: string
+paths:
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/credentials':
+    get:
+      tags:
+        - SSH Access
+      summary: Retrieve the SSH Key Value Using Query Parameters
+      operationId: getSshKeyValue
+      description: >-
+        Returns one or more SSH key values for the given query
+        parameters.<ul><li>Use the <code>?credname</code> query parameter to
+        retrieve results for a given credential name.</li><li>Use the
+        <code>?serviceName</code> query parameter to retrieve results for a
+        given service instance.</li></ul>
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonQueryServiceName'
+        - name: credname
+          in: query
+          description: >-
+            Unique credential name.<p><b>Note:</b> <code>vmspublickey</code> is
+            the only supported credential name. This is the default if a
+            credential name is not supplied.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/ssh-get-key-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-credentials-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/credentials/crednames':
+    get:
+      tags:
+        - SSH Access
+      summary: Retrieve the SSH Key Description Using Query Parameters
+      operationId: getSshKeyDescriptions
+      description: >-
+        Returns one or more credential descriptions for the given query
+        parameters.<ul><li>Use the <code>?credname</code> query parameter to
+        retrieve results for a given credential name.</li><li>Use the
+        <code>?serviceName</code> query parameter to retrieve results for a
+        given Oracle MySQL Cloud Service instance.</li></ul>
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonQueryServiceName'
+        - name: credname
+          in: query
+          description: >-
+            Unique credential name.<p><b>Note:</b> <code>vmspublickey</code> is
+            the only supported credential name. This is the default if a
+            credential name is not supplied.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/ssh-get-key-description-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-credentials-crednames-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/credentials/crednames/{credentialName}':
+    get:
+      tags:
+        - SSH Access
+      summary: View the SSH Key Description
+      operationId: getSshKeyDescription
+      description: >-
+        Returns the credential description for the given credential
+        name.<p><b>Note:</b> <code>vmspublickey</code> is the only supported
+        credential name.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: credentialName
+          in: path
+          description: >-
+            Credential name associated with the SSH key. Currently, the only
+            credential name you can use is <code>vmspublickey</code>.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/ssh-key-description-item'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-credentials-crednames-{credentialName}-get
+    post:
+      tags:
+        - SSH Access
+      summary: Add a New SSH Public Key
+      operationId: addSshKey
+      description: >-
+        Adds a new SSH public key for the given credential name. <p><b>Note:</b>
+        <code>vmspublickey</code> is the only supported credential name.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: credentialName
+          in: path
+          description: >-
+            Credential name to add the SSH public key to. Currently, the only
+            credential name you can use is <code>vmspublickey</code>.
+          required: true
+          type: string
+        - name: payload
+          in: body
+          description: >-
+            The request body defines the details of the SSH public key name and
+            value.
+          required: true
+          schema:
+            $ref: '#/definitions/ssh-add-key-post-request'
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other HTTP status codes.
+          schema:
+            $ref: '#/definitions/ssh-add-key-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-credentials-crednames-{credentialName}-post
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/credentials/{credentialName}':
+    get:
+      tags:
+        - SSH Access
+      summary: View Details of the SSH Key
+      operationId: getSshKeyDetails
+      description: >-
+        Returns the credential value for the given credential
+        name.<p><b>Note:</b> <code>vmspublickey</code> is the only supported
+        credential name.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - $ref: '#/parameters/CommonPathCredentialName'
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/ssh-get-key-details-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-credentials-{credentialName}-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/patches/available':
+    get:
+      tags:
+        - Patches
+      summary: View Available Patches
+      operationId: getAvailablePatches
+      description: >-
+        Returns a list of all available patches for an Oracle MySQL Cloud
+        Service instance.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/patch-available-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-patches-available-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/patches/{patchId}':
+    put:
+      tags:
+        - Patches
+      summary: Apply a Patch
+      operationId: applyPatch
+      description: Applies a patch to an Oracle MySQL Cloud Service instance.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: patchId
+          in: path
+          description: >-
+            Patch ID. The patch ID can be retrieved via getting the list of
+            available patches.
+          required: true
+          type: string
+        - name: payload
+          in: body
+          description: >-
+            The request body contains details of the patch request. There are no
+            required values, but a value is required. Pass in {} if settings are
+            not required.
+          required: true
+          schema:
+            $ref: '#/definitions/patch-apply-request-request'
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/patch-accepted-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-patches-{patchId}-put
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/patches/applied':
+    get:
+      tags:
+        - Patches
+      summary: View Applied Patches
+      operationId: getAppliedPatches
+      description: >-
+        Returns a list of all applied patches for an Oracle MySQL Cloud Service
+        instance.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/patch-applied-all-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-patches-applied-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/patches/applied/job/{jobId}':
+    get:
+      tags:
+        - Patches
+      summary: View a Patch Operation Status
+      operationId: getPatchStatus
+      description: >-
+        Returns information about the specified patching operation for an Oracle
+        MySQL Cloud Service instance.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: jobId
+          in: path
+          description: Unique ID of a patching or rollback operation.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/patch-applied-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-patches-applied-job-{jobId}-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/patches/checks/{patchId}':
+    put:
+      tags:
+        - Patches
+      summary: Perform a Patching Precheck
+      operationId: doPatchPrecheck
+      description: >-
+        Performs a precheck to identity potential issues that might prevent the
+        specified patch from completing successfully without actually patching
+        the service instance. Specifically, the patching precheck reports on the
+        following conditions: <ul><li>Disk space shortage</li><li>Database
+        connectivity failure</li><li>Server access failure</li><li>Storage
+        access failure</li></ul><p>Prechecks do not check whether another
+        administration task (such as backup, restoration, or scaling) is in
+        progress, which would prevent patching.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: patchId
+          in: path
+          description: ID of the patch to precheck.
+          required: true
+          type: string
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.<p>The
+            <code>Location</code> header returns a REST URI that can be used to
+            access the status of the patching precheck operation.
+          schema:
+            $ref: '#/definitions/patch-accepted-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-patches-checks-{patchId}-put
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/patches/checks':
+    get:
+      tags:
+        - Patches
+      summary: View All Patching Precheck Operations
+      operationId: getPrecheckOperations
+      description: >-
+        Returns the status of all patching precheck operations that have been
+        executed against the service instance.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/patch-precheck-view-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-patches-checks-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/patches/checks/job/{jobId}':
+    get:
+      tags:
+        - Patches
+      summary: View the Status of a Patching Precheck Operation
+      operationId: getPrecheckStatus
+      description: Returns the status of a patching precheck operation.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: jobId
+          in: path
+          description: >-
+            Job ID of the operation that was returned when the patching precheck
+            was initiated.
+          required: true
+          type: string
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/patch-precheck-view-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-patches-checks-job-{jobId}-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/patches/{rollbackId}/rollback':
+    put:
+      tags:
+        - Patches
+      summary: Rollback a Patch
+      operationId: rollbackPatch
+      description: Rolls back a patch for an Oracle MySQL Cloud Service instance.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: rollbackId
+          in: path
+          description: >-
+            ID of the rollback that is associated to the completed patching
+            operation.
+          required: true
+          type: string
+        - name: payload
+          in: body
+          description: The request body contains a note about the rollback request.
+          required: true
+          schema:
+            $ref: '#/definitions/patch-rollback-request'
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/patch-accepted-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-patches-{rollbackId}-rollback-put
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/backups':
+    post:
+      tags:
+        - Backups
+      summary: Initiate an On-demand Backup
+      operationId: startBackup
+      description: >-
+        Initiates an on-demand backup for an Oracle MySQL Cloud Service
+        instance.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: payload
+          in: body
+          description: 'The request body contains details of the on-demand backup request. '
+          required: true
+          schema:
+            $ref: '#/definitions/backup-ondemand-request'
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/backup-accepted-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-backups-post
+    get:
+      tags:
+        - Backups
+      summary: View All Backups
+      operationId: getAllBackups
+      description: >-
+        Returns information about all backups of an Oracle MySQL Cloud Service
+        instance.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/backup-view-all-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-backups-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/backups/{backupId}':
+    get:
+      tags:
+        - Backups
+      summary: View a Backup
+      operationId: getBackup
+      description: >-
+        Returns information about a backup of an Oracle MySQL Cloud Service
+        instance.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: backupId
+          in: path
+          description: Backup ID.
+          required: true
+          type: string
+        - name: includeLinkedDetails
+          in: query
+          description: >-
+            Flag that specifies whether to include information
+            (<code>true</code>) or exclude information about related backups
+            (<code>false</code>). When set to <code>true</code>:<ul><li>For a
+            full backup, includes information about all incremental backups
+            performed since the last full backup.</li><li>For an incremental
+            backup, includes information about the previous full
+            backup.</li></ul>Defaults to <code>false</code>, excluding
+            information about related backups.
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/backup-view-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-backups-{backupId}-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/deletedbackups':
+    post:
+      tags:
+        - Backups
+      summary: Delete a Backup (Asynchronous)
+      operationId: deleteBackup
+      description: >-
+        Deletes a backup of an Oracle MySQL Cloud Service instance. This is an
+        asynchronous operation.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: payload
+          in: body
+          description: >-
+            The request body contains details of the delete backup request. You
+            must specify at least one attribute.
+          required: true
+          schema:
+            $ref: '#/definitions/backup-delete-request'
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/backup-accepted-response'
+        '404':
+          description: Not found. Returned if the backup does not exist.
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-deletedbackups-post
+    get:
+      tags:
+        - Backups
+      summary: View All Deleted Backups
+      operationId: getAllDeletedBackups
+      description: >-
+        Returns information about all deleted backups for an Oracle MySQL Cloud
+        Service instance.
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/backup-view-all-deleted-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-deletedbackups-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/deletedbackups/{jobId}':
+    get:
+      tags:
+        - Backups
+      summary: View a Deleted Backup
+      operationId: getDeletedBackup
+      description: >-
+        Returns information about a deleted backup for an Oracle MySQL Cloud
+        Service instance based on the job ID provided.
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: jobId
+          in: path
+          description: Job ID for the backup deletion.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/backup-view-deleted-response'
+        '400':
+          description: Bad Request. Returned if the job ID does not exist.
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-deletedbackups-{jobId}-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/restoredbackups':
+    post:
+      tags:
+        - Backups
+      summary: Restore a Service Instance from Backup
+      operationId: restoreBackup
+      description: >-
+        Restores the Oracle MySQL Cloud Service instance from a specified
+        backup; or restored to a point-in-time. 
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: payload
+          in: body
+          description: The request body defines the details of the restoration request.
+          required: true
+          schema:
+            $ref: '#/definitions/backup-restoration-post-request'
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a>, for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/backup-accepted-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-restoredbackups-post
+    get:
+      tags:
+        - Backups
+      summary: View All Restoration Operations
+      operationId: getRestoreBackupOperations
+      description: >-
+        Returns information for all restoration operations for an Oracle MySQL
+        Cloud Service instance.<p>By default, only successful restoration
+        operations are included. Set the <code>?includeFailed</code> query
+        parameter to <code>true</code> to include both successful and failed
+        restoration operations.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a>, for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/backup-view-all-restorations-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-restoredbackups-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/restoredbackups/{jobId}':
+    get:
+      tags:
+        - Backups
+      summary: View the Status of a Restoration Operation
+      operationId: getRestoreBackupStatus
+      description: >-
+        Returns the status of the specified restoration operation of an Oracle
+        MySQL Cloud Service instance.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: jobId
+          in: path
+          description: Job ID of the restoration operation.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a>, for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/backup-restore-history'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-restoredbackups-{jobId}-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/backupconfig':
+    get:
+      tags:
+        - Backups
+      summary: View the Backup Configuration
+      operationId: getBackupConfiguration
+      description: >-
+        Returns the backup configuration for the Oracle MySQL Cloud Service. The
+        information includes:<ul><li>Default retention time for incremental
+        backups and full on-demand backups; full scheduled backups are retained
+        until their last related incremental backup is no longer
+        available</li><li>Schedule for full backups</li><li>Schedule for
+        incremental backups</li><li>Date and time of the last successful
+        backup</li><li>Date and time for the next scheduled backup (both full
+        and incremental)</li><li>Total cloud storage container used for backups
+        and total backup volume used</li>
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/backup-config-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-backupconfig-get
+    post:
+      tags:
+        - Backups
+      summary: Update the Backup Configuration
+      operationId: updateBackupConfiguration
+      description: >-
+        Updates the backup configuration for an Oracle MySQL Cloud Service
+        instance. Specifically, you can update the following
+        details:<ul><li>Schedule for full and incremental
+        backups</li><li>Default retention time for incremental backups and full
+        on-demand backups; note that full scheduled backups are retained until
+        their last related incremental backup is no longer available, if
+        any</li><li>Storage Cloud Service URI and user name for the container
+        that is used to store backups</li></ul><p>To disable a full or
+        incremental backup, set the <code>fullBackupSchedule</code> or
+        <code>incrementalBackupSchedule</code> value, respectively, to
+        <code>null</code>. For example: <code>{&quot;fullBackupSchedule&quot;:
+        null}</code>.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: payload
+          in: body
+          description: >-
+            The request body defines the details of the backup configuration
+            update request. Specify only those attributes that you want to
+            update.
+          required: true
+          schema:
+            $ref: '#/definitions/backup-config-post-request'
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other HTTP status codes.
+          schema:
+            $ref: '#/definitions/backup-config-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-backupconfig-post
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/accessrules':
+    get:
+      tags:
+        - Access Rules
+      summary: View All Access Rules
+      operationId: getAccessRules
+      description: >-
+        Returns information about all access rules defined for an Oracle MySQL
+        Cloud Service instance.<p>The access rules that control external access
+        to the MySQL Server, and MySQL Enterprise Monitor are disabled by
+        default. To gain access to the administration consoles, you are required
+        to explicitly enable the access rules for them.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/access-rules-view-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-accessrules-get
+    post:
+      tags:
+        - Access Rules
+      summary: Add an Access Rule
+      operationId: insertAccessRule
+      description: >-
+        Adds (inserts) a new access rule to an Oracle MySQL Cloud Service
+        instance.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: payload
+          in: body
+          description: The request body defines the details of the access rule to add.
+          required: true
+          schema:
+            $ref: '#/definitions/access-rules-add-post-request'
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other HTTP status codes.
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-accessrules-post
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/accessrules/{ruleName}':
+    put:
+      tags:
+        - Access Rules
+      summary: Update an Access Rule
+      operationId: updateAccessRule
+      description: >-
+        Disable, enable, or delete an access rule only. You cannot change the
+        rule details.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: ruleName
+          in: path
+          description: Name of the access rule to disable or enable.
+          required: true
+          type: string
+        - name: payload
+          in: body
+          description: >-
+            The request body defines the details of the disable, enable, or
+            delete request.
+          required: true
+          schema:
+            $ref: '#/definitions/access-rules-update-put-request'
+      responses:
+        '200':
+          description: >-
+            OK (enable or disable rule). See <a
+            href='Status%20Codes.html'>Status Codes</a> for information about
+            other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/access-rules-details'
+        '202':
+          description: >-
+            Accepted (delete rule). See <a href='Status%20Codes.html'>Status
+            Codes</a> for information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/access-rules-details'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-accessrules-{ruleName}-put
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances':
+    post:
+      tags:
+        - Service Instances
+      summary: Create an Oracle MySQL Cloud Service Instance
+      operationId: addInstance
+      description: Create an Oracle MySQL Cloud Service instance.
+      consumes:
+        - application/vnd.com.oracle.oracloud.provisioning.Service+json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - name: payload
+          in: body
+          description: >-
+            The request body defines the details of the service instance
+            creation request
+          required: true
+          schema:
+            $ref: '#/definitions/service-create-instance-request'
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/service-accepted-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-post
+    get:
+      tags:
+        - Service Instances
+      summary: View All Service Instances
+      operationId: getAllInstances
+      description: Return information about all Oracle MySQL Cloud Service instances.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/service-view-all-instances'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-get
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}':
+    get:
+      tags:
+        - Service Instances
+      summary: View a Service Instance
+      operationId: getInstance
+      description: Return information about an Oracle MySQL Cloud Service instance.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/service-view-instance'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-get
+    put:
+      tags:
+        - Service Instances
+      summary: Delete a Service Instance
+      operationId: deleteInstance
+      description: Delete an Oracle MySQL Cloud Service instance.
+      consumes:
+        - application/vnd.com.oracle.oracloud.provisioning.Service+json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: payload
+          in: body
+          description: >-
+            The request body is reserved for options, although no options exist
+            at this time. Instead, pass in an empty object, such as {}.
+          required: true
+          schema:
+            $ref: '#/definitions/service-delete-instance-put-request'
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/service-accepted-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-put
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/hosts/{function}':
+    post:
+      tags:
+        - Service Instances
+      summary: 'Start, Stop, or Restart a Service Instance'
+      operationId: updateInstanceStatus
+      description: Controls the lifecycle state of an Oracle Cloud Service instance.
+      consumes:
+        - application/vnd.com.oracle.oracloud.provisioning.Service+json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: function
+          in: path
+          description: >-
+            Action of controlling the lifecycle state. {function} will be one of
+            start, stop, or restart.
+          required: true
+          type: string
+        - name: payload
+          in: body
+          description: >-
+            The request body defines the details of the service instance
+            request.
+          required: true
+          schema:
+            $ref: '#/definitions/service-change-instance-status-request'
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/service-accepted-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-hosts-{function}-post
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/hosts/scale':
+    post:
+      tags:
+        - Service Instances
+      summary: Scale a MySQL Cloud Service instance
+      operationId: scaleInstance
+      description: Scale an Oracle MySQL Cloud Service instance's compute nodes up or down.
+      consumes:
+        - application/vnd.com.oracle.oracloud.provisioning.Service+json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: payload
+          in: body
+          description: The request body defines the details of the request.
+          required: true
+          schema:
+            $ref: '#/definitions/service-scale-post-request'
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/service-accepted-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-hosts-scale-post
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/storage/add':
+    post:
+      tags:
+        - Service Instances
+      summary: Add storage to a MySQL Cloud Service instance
+      operationId: addInstanceStorage
+      description: |2-
+         MySQL Cloud Service supports adding storage to 
+        <code>dataStorage</code>, 
+        <code>backupStorage</code>, or 
+        <code>MySQLLogStorage</code>.
+      consumes:
+        - application/vnd.com.oracle.oracloud.provisioning.Service+json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: payload
+          in: body
+          description: The request body defines the details of the request.
+          required: true
+          schema:
+            $ref: '#/definitions/service-add-storage-post-request'
+      responses:
+        '202':
+          description: >-
+            Accepted. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/service-accepted-response'
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-storage-add-post
+  '/paas/api/v1.1/activitylog/{identityDomainId}/job/{jobId}':
+    get:
+      tags:
+        - Service Instances
+      summary: View the Activity Log of a Job
+      operationId: getJobStatus
+      description: Return the messages of an Oracle MySQL Service Instance operation.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - name: jobId
+          in: path
+          description: Job ID.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/service-view-activity-log'
+      x-internal-id: 'paas-api-v1.1-activitylog-{identityDomainId}-job-{jobId}-get'
+  '/paas/api/v1.1/instancemgmt/{identityDomainId}/services/MySQLCS/instances/{serviceId}/healthcheck':
+    get:
+      tags:
+        - Health Monitoring
+      summary: Monitor a Service Instance
+      operationId: getMonitoringRecords
+      description: >-
+        Returns health monitoring data for the specified Oracle MySQL Cloud
+        Service instance.<p>Monitoring information is provided at the following
+        levels: <ul><li>Service instance</li><li>Component
+        (mysql)</li><li>Virtual Machine (vmInstances) </li><li>MySQL
+        Server</li></ul>. The query parameter <code>format</code> is required,
+        and the only supported format now is <code>v1</code>.
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/CommonHeaderTenant'
+        - $ref: '#/parameters/CommonPathIdentityDomainId'
+        - $ref: '#/parameters/CommonPathServiceId'
+        - name: format
+          in: query
+          description: >-
+            Format of the health data. The only supported format for health data
+            is <code>v1</code>.
+          required: true
+          type: string
+          enum:
+            - v1
+      responses:
+        '200':
+          description: >-
+            OK. See <a href='Status%20Codes.html'>Status Codes</a> for
+            information about other possible HTTP status codes.
+          schema:
+            $ref: '#/definitions/monitor-response'
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      x-internal-id: >-
+        paas-api-v1.1-instancemgmt-{identityDomainId}-services-MySQLCS-instances-{serviceId}-healthcheck-get
+definitions:
+  ssh-get-key-response:
+    description: The response body contains details about one or more SSH keys.
+    properties:
+      items:
+        type: array
+        description: Details of each SSH keys.
+        items:
+          $ref: '#/definitions/ssh-get-key-items'
+      hasMore:
+        type: boolean
+        description: >-
+          Flag that specifies whether the list returned by the query is full
+          (<code>false</code>) or partial (<code>true</code>). <p>When the list
+          is partial, use the <code>offset</code> query parameter to fetch
+          additional results. By default, <code>offset</code> is 0 (zero) and
+          <code>limitRowCount</code> is 50.
+      totalResults:
+        type: integer
+        description: Number of results returned by the query.
+  ssh-get-key-items:
+    description: The details of one SSH key.
+    properties:
+      identityDomain:
+        type: string
+        description: Identity domain ID for the Oracle MySQL Cloud Service account.
+      serviceType:
+        type: string
+        description: >-
+          Cloud service type. Valid value is <code>MySQLCS</code> for Oracle
+          MySQL Cloud Service.
+      serviceName:
+        type: string
+        description: Name of the Oracle MySQL Cloud Service instance.
+      credName:
+        type: string
+        description: >-
+          Credential name. Currently, the only supported credential name is
+          <code>vmspublickey</code>.
+      credType:
+        type: string
+        description: Credential type. Only supported value is <code>SSH</code>.
+      lastUpdateTime:
+        type: string
+        description: Date and time the SSH key was last updated.
+      lastUpdateStatus:
+        type: string
+        description: Status of the last update for the SSH key.
+      lastUpdateMessage:
+        type: string
+        description: >-
+          Message returned from the last update for the SSH key. For example:
+          <code>newly created</code>, <code>updated by <em>username</em></code>.
+      osUserName:
+        type: string
+        description: >-
+          Compute virtual machine OS user name. Only supported value is
+          <code>opc</code>.
+      computeKeyName:
+        type: string
+        description: Compute sshkey object key name.
+      publicKey:
+        type: string
+        description: >-
+          Public key for the secure shell (SSH). This key is used for
+          authentication when connecting to the Oracle MySQL Cloud Service
+          instance using an SSH client.
+      description:
+        type: string
+        description: Credential description of the credential name.
+      serviceState:
+        type: string
+        description: 'State of the service instance. For example, <code>RUNNING</code>.'
+  ssh-get-key-description-response:
+    description: >-
+      The response body contains general information about one or more SSH keys
+      (including their descriptions).
+    properties:
+      items:
+        type: array
+        description: General information of each SSH keys.
+        items:
+          $ref: '#/definitions/ssh-key-description-item'
+      hasMore:
+        type: boolean
+        description: >-
+          Flag that specifies whether the list returned by the query is full
+          (<code>false</code>) or partial (<code>true</code>). <p>When the list
+          is partial, use the <code>offset</code> query parameter to fetch
+          additional results. By default, <code>offset</code> is 0 (zero) and
+          <code>limitRowCount</code> is 50.
+      totalResults:
+        type: integer
+        description: Number of results returned by the query.
+  ssh-key-description-item:
+    description: The details of one SSH key.
+    properties:
+      identityDomain:
+        type: string
+        description: Identity domain ID for the Oracle MySQL Cloud Service account.
+      serviceType:
+        type: string
+        description: >-
+          Cloud service type. Valid value is <code>MySQLCS</code> for Oracle
+          MySQL Cloud Service.
+      serviceName:
+        type: string
+        description: Name of the Oracle MySQL Cloud Service instance.
+      credName:
+        type: string
+        description: >-
+          Credential name. Currently, the only supported credential name is
+          <code>vmspublickey</code>.
+      credType:
+        type: string
+        description: Credential type. Only supported value is <code>SSH</code>.
+      description:
+        type: string
+        description: Credential description of the credential name.
+      canonicalUrl:
+        type: string
+        description: URL to query the credential key value.
+  ssh-get-key-details-response:
+    description: The details of one SSH key.
+    properties:
+      identityDomain:
+        type: string
+        description: Identity domain ID for the Oracle MySQL Cloud Service account.
+      serviceType:
+        type: string
+        description: >-
+          Cloud service type. Valid value is <code>MySQLCS</code> for Oracle
+          MySQL Cloud Service.
+      serviceName:
+        type: string
+        description: Name of the Oracle MySQL Cloud Service instance.
+      credName:
+        type: string
+        description: >-
+          Credential name. Currently, the only supported credential name is
+          <code>vmspublickey</code>.
+      credType:
+        type: string
+        description: Credential type. Only supported value is <code>SSH</code>.
+      parentType:
+        type: string
+        description: The value <code>SERVICE</code>.
+      lastUpdateTime:
+        type: string
+        description: Date and time the SSH key was last updated.
+      lastUpdateStatus:
+        type: string
+        description: Status of the last update for the SSH key.
+      lastUpdateMessage:
+        type: string
+        description: >-
+          Message returned from the last update for the SSH key. For example:
+          <code>newly created</code>, <code>updated by <em>username</em></code>.
+      osUserName:
+        type: string
+        description: >-
+          Compute virtual machine OS user name. Only supported value is
+          <code>opc</code>.
+      computeKeyName:
+        type: string
+        description: Compute sshkey object key name.
+      publicKey:
+        type: string
+        description: >-
+          Public key for the secure shell (SSH). This key is used for
+          authentication when connecting to the Oracle MySQL Cloud Service
+          instance using an SSH client.
+      description:
+        type: string
+        description: Credential description of the credential name.
+  ssh-add-key-post-request:
+    description: The request body defines the SSH public key value to add.
+    properties:
+      public-key:
+        type: string
+        description: >-
+          The value of the SSH public key, with any slashes (<code>/</code>) it
+          contains preceded by backslashes, as in <code>\/</code>.
+    required:
+      - public-key
+  ssh-add-key-response:
+    description: The response body contains information about the add SSH key operation.
+    properties:
+      status:
+        type: string
+        description: 'Status description. For example: <code>submitted job</code>.'
+  patch-available-response:
+    description: The response body contains information about the available patches.
+    properties:
+      availablePatchGuiMetadata:
+        type: object
+        description: Instruction to the metadata UI about the patch.
+        properties:
+          supportsPreCheck:
+            type: boolean
+            description: Flag that indicates whether the patch supports precheck via UI.
+      patchId:
+        type: string
+        description: Patch ID.
+      patchNumber:
+        type: string
+        description: Patch number.
+      patchCategory:
+        type: string
+        description: >-
+          Category of the patch. For example: <code>General</code>,
+          <code>Upgrade</code>, <code>Multiple</code>, <code>Security</code>,
+          and so on.
+      patchSeverity:
+        type: string
+        description: >-
+          Severity of the patch. For example <code>Normal</code>,
+          <code>Mandatory</code>, <code>Recommended</code>, and so on.
+      includesConfigUpgrade:
+        type: boolean
+        description: >-
+          Flag that indicates whether the patch includes a configuration
+          upgrade.
+      patchDescription:
+        type: string
+        description: Description of the patch.
+      patchReleaseUrl:
+        type: string
+        description: URL that provides more information about the patch.
+      serviceType:
+        type: string
+        description: 'Type of Oracle MySQL Cloud Service. For example: <code>MySQLCS</code>.'
+      serviceVersion:
+        type: string
+        description: >-
+          Oracle MySQL Cloud Service instance version to which the patch can be
+          applied. For example: <code>5.7</code>, <code>Any</code>, where
+          <code>Any</code> indicates that the patch can be applied to any
+          version.
+      releaseDate:
+        type: string
+        description: Date and time the patch is released.
+      entryDate:
+        type: string
+        description: Date and time the patch is created.
+      entryUserId:
+        type: string
+        description: Name of the user that created the patch.
+      componentPatches:
+        type: array
+        description: Group the details of each patches in the component.
+        items:
+          $ref: '#/definitions/patch-component-details-info'
+      patchComponents:
+        type: array
+        description: Group the details of the patch to be applied.
+        items:
+          $ref: '#/definitions/patch-component-applied-info'
+      patchType:
+        type: string
+        description: >-
+          Patch type classification. For example, <code>Quarterly</Code>,
+          <code>Security</Code>.
+      requiresRestart:
+        type: boolean
+        description: >-
+          Flag that indicates whether the patch requires a restart of the
+          service instance.
+      serviceTypeVersions:
+        type: string
+        description: >-
+          Oracle MySQL Cloud Service instance version to which the patch can be
+          applied. For example: <code>5.7</code>, <code>Any</code>, where
+          <code>Any</code> indicates that the patch can be applied to any
+          version.
+      isDeleted:
+        type: boolean
+        description: >-
+          Flag that indicates whether the patch has been deleted and is no
+          longer available. The information about the patch is not removed from
+          the list of available patches in order to maintain an historical
+          record of all patches.
+      isCustomerVisible:
+        type: boolean
+        description: Flag that indicates whether the patch is visible to customer.
+      isAutoApply:
+        type: boolean
+        description: Flag that indicates whether the patch can be applied automatically.
+      induceDownTime:
+        type: boolean
+        description: >-
+          Flag that indicates whether the patching induces a downtime of the
+          service.
+      displayName:
+        type: string
+        description: Display name of the patch.
+      metaVersion:
+        type: string
+        description: The release version of metadata service manager.
+      supportedStrategy:
+        type: string
+        description: 'Supported patching strategy. For example: <code>In Place</code>.'
+      releaseVersion:
+        type: string
+        description: Release version of the component in this patch.
+      patchCustomActions:
+        type: array
+        description: List of customer actions during patching.
+        items:
+          type: string
+  patch-component-details-info:
+    description: Group the details of each patch in the component.
+    properties:
+      id:
+        type: integer
+        description: ID of a component patch.
+      version:
+        type: string
+        description: Version of the patch component.
+      releaseVersion:
+        type: string
+        description: Release version of the component in this patch.
+      displayName:
+        type: string
+        description: Display name of the component in this patch.
+      description:
+        type: string
+        description: Brief description of the patch.
+      zipBundles:
+        type: array
+        description: Zips that contain the patched binaries or patches.
+        items:
+          $ref: '#/definitions/patch-zip-bundle-info'
+      preserveFiles:
+        type: array
+        description: List of files to be preserved during patching.
+        items:
+          type: string
+  patch-component-applied-info:
+    description: Group the details of the patch to be applied.
+    properties:
+      id:
+        type: integer
+        description: ID of a component patch.
+      component:
+        type: string
+        description: 'Name of the component in this patch. For example, <code>mysql</code>.'
+      version:
+        type: string
+        description: Version of the patch component.
+      md5sum:
+        type: string
+        description: Checksum used to validate the patch binary.
+      provisioningObjectRef:
+        type: string
+        description: Location of binary to use when creating a new service instance.
+      patchingObjectRef:
+        type: string
+        description: Location of binary to use when patching a service instance.
+      preserveFiles:
+        type: array
+        description: List of files to be preserved during patching.
+        items:
+          type: string
+  patch-zip-bundle-info:
+    description: Group the details of zips for the patched binaries.
+    properties:
+      id:
+        type: integer
+        description: ID of a component patch.
+      md5sum:
+        type: string
+        description: Checksum used to validate the patch binary.
+      provisioningObjectRef:
+        type: string
+        description: Location of binary to use when creating a new service instance.
+      storageKey:
+        type: string
+        description: Location of the patch zip on the cloud.
+      zipVersion:
+        type: string
+        description: Software version that is included in the zip.
+      releaseDate:
+        type: string
+        description: Release date of this version.
+      releaseUrl:
+        type: string
+        description: URL for more information about this release.
+      displayName:
+        type: string
+        description: Display name of this component.
+  patch-apply-request-request:
+    description: >-
+      The request body contains information about the patch request. Although
+      attributes are not required, but a body is. Pass in {} if attributes will
+      not be defined.
+    properties:
+      additionalNote:
+        type: string
+        description: >-
+          Free-form text to provide additional information about the patch
+          request.
+  patch-accepted-response:
+    title: Response Body
+    description: The response body contains information about the operation.
+    properties:
+      message:
+        description: >-
+          System message that describes the operation. For example:
+          <code>Submitted job to create service [{serviceId}] in domain
+          [{identityDomainId}].</code>
+        type: string
+      jobId:
+        description: Job ID for the operation.
+        type: string
+  patch-applied-all-response:
+    description: The response body includes details of all applied patches.
+    type: array
+    items:
+      $ref: '#/definitions/patch-applied-response'
+  patch-applied-response:
+    description: Information about an applied patch.
+    properties:
+      backupStatus:
+        type: string
+        description: >-
+          Whether a backup of the software was created before the patch was
+          applied. Valid values include: <code>Available</code>,
+          <code>SameVersion</code>, <code>Unavailable</code>,
+          <code>Unknown</code>.
+      additionalNote:
+        type: string
+        description: Free-form text to provide additional information about the patch.
+      appliedBy:
+        type: string
+        description: >-
+          Name of the user that applied the patch. <code>system</code> displays
+          if the patch was applied by an auto-update scheduled job.
+      appliedDate:
+        type: string
+        description: Date and time that the patch was applied.
+      totalTime:
+        type: string
+        description: Duration of the patch operation.
+      patchId:
+        type: string
+        description: Patch ID.
+      patchDescription:
+        type: string
+        description: Description of the patch.
+      patchReleaseUrl:
+        type: string
+        description: URL that provides more information about the patch.
+      releaseDate:
+        type: string
+        description: Date and time patch was released.
+      resultMessage:
+        type: string
+        description: Patch results message.
+      lastStatus:
+        type: string
+        description: >-
+          Status of the patch operation. For example: <code>IN PROGRESS</code>,
+          <code>COMPLETED</code>, and <code>FAILED</code>.
+          <code>COMPLETED_ROLLBACK</code> is displayed when an applied patch has
+          been rolled back.
+      lastStatusMessage:
+        type: string
+        description: Last message logged for the patch operation.
+      componentPatches:
+        type: array
+        description: Group the details of each patches in the component.
+        items:
+          $ref: '#/definitions/patch-component-details-info'
+      patchComponents:
+        type: array
+        description: Group the details of the patch to be applied.
+        items:
+          $ref: '#/definitions/patch-component-applied-info'
+      patchType:
+        type: string
+        description: >-
+          Patch type classification. For example, <code>Quarterly</Code>,
+          <code>Security</Code>.
+      patchCategory:
+        type: string
+        description: >-
+          Category of the patch. For example: <code>General</code>,
+          <code>Multiple</code>, <code>Security</code>, and so on.
+      patchSeverity:
+        type: string
+        description: >-
+          Severity of the patch. For example <code>Normal</code>,
+          <code>Mandatory</code>, <code>Recommended</code>, and so on.
+      jobId:
+        type: string
+        description: Job ID for the patch operation.
+      displayName:
+        type: string
+        description: Display name of the patch.
+      toVersion:
+        type: string
+        description: Version of Oracle MySQL Cloud Service instance that was patched.
+      backupId:
+        type: string
+        description: Backup ID. You can use the backup ID to manage the backup.
+      inProgress:
+        type: boolean
+        description: Flag that specifies whether the patch is still in progress.
+      operationType:
+        type: string
+        description: >-
+          Patch operating being performed. Valid values include:
+          <code>Rollback</code>, <code>Patching</code>, and <code>None</code>.
+      id:
+        type: integer
+        description: >-
+          Unique ID of the patching operation. Use this ID to get details of a
+          patching operation.
+      patchingResult:
+        $ref: '#/definitions/patch-result-info'
+      rollbackResult:
+        $ref: '#/definitions/patch-rollback-result'
+      rollbackId:
+        type: string
+        description: >-
+          ID of the rollback that is associated to the completed patching
+          operation. The ID is used to rollback a patch operation.
+      rollbackVersion:
+        type: string
+        description: Version to which the patched component will be rolled back.
+      currentPatchLevel:
+        type: string
+        description: Current patch level for the component.
+      progressMessages:
+        type: array
+        description: List of progress messages for the patch.
+        items:
+          type: string
+  patch-result-info:
+    type: object
+    description: Groups information about the results of the patch.
+    properties:
+      additionalNote:
+        type: string
+        description: Free-form text to provide additional information about the rollback.
+        properties:
+          patchingId:
+            type: integer
+            description: ID of the applied patch operation.
+          backupId:
+            type: string
+            description: Backup ID. You can use the backup ID to manage the backup.
+          versionBeforeThisPatch:
+            type: string
+            description: Version of the component before the patch was applied.
+          strategy:
+            type: string
+            description: >-
+              Patching strategy. For example, <code>Rolling</code>. To minimize
+              service disruption, the patch is applied in a rolling pattern,
+              patching a single node at a time.
+          metaVersionBeforeThisPatch:
+            type: string
+            description: >-
+              Version of the metadata service manager before the patch was
+              applied.
+          customRollbackId:
+            type: string
+            description: ID to be used in a rollback operation.
+          startDate:
+            type: string
+            description: Date and time that the patch operation started.
+          endDate:
+            type: string
+            description: Date the patch operation ended.
+          patchingStatus:
+            type: string
+            description: >-
+              Status of the patching operation. For example,
+              <code>COMPLETED</code>. <code>COMPLETED_ROLLBACK</code> is
+              displayed when an applied patch has been rolled back.
+          resultMessage:
+            type: string
+            description: System message that describes the patching operation.
+          additionalNote:
+            type: string
+            description: Free-form text to provide additional information about the patch.
+          appliedBy:
+            type: string
+            description: >-
+              Name of the user that applied the patch. <code>system</code>
+              displays if the patch was applied by an auto-update scheduled job.
+          jobId:
+            type: string
+            description: Job ID for the patch operation.
+          completeLog:
+            type: string
+            description: System messages that track the patch operations.
+          progressMessages:
+            type: array
+            description: List of progress messages for the patch.
+            items:
+              type: string
+  patch-rollback-result:
+    type: object
+    description: >-
+      Groups information about the results of the rollback operation. This
+      attribute displays only when a rollback of the patch had been performed.
+    properties:
+      rollbackId:
+        type: integer
+        description: ID of the rollback operation.
+      startDate:
+        type: string
+        description: Date and time that the rollback operation started.
+      endDate:
+        type: string
+        description: Date the rollback operation ended.
+      patchingStatus:
+        type: string
+        description: >-
+          Status of the rollback operation. For example,
+          <code>COMPLETED_ROLLBACK</code>.
+      resultMessage:
+        type: string
+        description: System message that describes the rollback operation.
+      additionalNote:
+        type: string
+        description: Free-form text to provide additional information about the rollback.
+      appliedBy:
+        type: string
+        description: Name of the user that performed the rollback.
+      jobId:
+        type: string
+        description: Job ID for the rollback operation.
+      completeLog:
+        type: string
+        description: System messages that track the rollback operations.
+      progressMessages:
+        type: array
+        description: List of progress messages for the rollback.
+        items:
+          type: string
+  patch-rollback-request:
+    description: The request body defines details about the rollback request.
+    properties:
+      additionalNote:
+        type: string
+        description: Free-form text to provide additional information about the rollback.
+  patch-precheck-view-response:
+    description: >-
+      The response body includes information about the patch precheck. When
+      viewing all patching prechecks, the response body includes information
+      about all patch prechecks executed on this service instance.
+    properties:
+      id:
+        type: integer
+        description: ID of the operation.
+      jobId:
+        type: string
+        description: Job ID for the patching precheck operation.
+      patchId:
+        type: string
+        description: Patch ID.
+      startDate:
+        type: string
+        description: Date and time that the patching precheck operation started.
+      endDate:
+        type: string
+        description: Date and time that the patching precheck operation stopped.
+      performedBy:
+        type: string
+        description: Name of the user account used to perform the patch precheck.
+      inProgress:
+        type: boolean
+        description: Flag that specifies whether the patch precheck is still in progress.
+      status:
+        type: string
+        description: >-
+          Status of the patching precheck operation. Valid values include:
+          <ul><li><code>PASSED_PRECHECK</code> - Patching precheck
+          passed.</li><li><code>DIDNT_PASS_PRECHECK</code> - Patching precheck
+          did not pass. Check the <code>preCheckMessages</code> attribute for
+          more information.</li><li><code>DIDNT_FINISHED_PRECHECK</code> - An
+          internal error was encountered and the patching precheck could not be
+          performed.
+      href:
+        type: string
+        description: >-
+          URL for checking the status of the patching precheck job. This
+          attribute displays only when viewing all patching precheck operations.
+      preCheckMessages:
+        type: array
+        description: >-
+          List of patching precheck messages. No patching precheck messages are
+          returned when the precheck completes successfully.
+        items:
+          type: string
+      resultMessage:
+        type: string
+        description: >-
+          System messages. This attribute displays only when viewing the status
+          of one patching precheck operation.
+  backup-ondemand-request:
+    type: object
+    description: >-
+      The request body contains information about the on-demand backup
+      operation. There are no required attributes.
+    properties:
+      keepForever:
+        type: boolean
+        description: >-
+          Flag that specifies whether to keep the backup forever. Otherwise,
+          full on-demand backups are retained for the default retention period
+          defined in the backup configuration.
+      notes:
+        type: string
+        description: Free-form text to provide additional information about the backup.
+  backup-accepted-response:
+    title: Response Body
+    type: object
+    description: The response body contains information about the operation.
+    properties:
+      operationName:
+        description: >-
+          Name of the operation. For example: <code>start-backup</code>,
+          <code>restore-backup</code>, or <code>delete-backup</code>.
+        type: string
+      target_uri:
+        description: >-
+          Target URI. Poll the URI to get the target information or status of
+          the operation.
+        type: string
+      job_id:
+        description: Job ID for the operation.
+        type: string
+  backup-view-response:
+    type: object
+    properties:
+      backupId:
+        type: string
+        description: >-
+          Backup ID. You can use the backup ID to manage the specific backup
+          (for example, download).
+      jobId:
+        type: string
+        description: Job ID for the backup.
+      backupStartDate:
+        type: string
+        description: Date and time that the backup started.
+      backupCompleteDate:
+        type: string
+        description: Date and time that the backup completed.
+      expirationDate:
+        type: string
+        description: >-
+          Date and time that the backup will be deleted automatically from
+          storage. If specify <code>keepForever</code> in backup request, the
+          backup is retained indefinitely or until manually deleted.
+      deletedOnDate:
+        type: string
+        description: Date and time that the backup deletion completed.
+      initiatedBy:
+        type: string
+        description: >-
+          User account that initiated this operation. If the operation is a
+          scheduled automated backup, the value is <code>scheduled</code>.
+      full:
+        type: boolean
+        description: >-
+          Flag that specifies whether this is a full (<code>true</code>) or
+          incremental (<code>false</code>) backup. A full backup contains all
+          the data files required to restore the service instance databases. An
+          incremental backup contains only changes to the databases since the
+          last scheduled full backup.
+      local:
+        type: boolean
+        description: >-
+          Flag that specifies whether the backup is to be downloaded and stored
+          locally (<code>true</code>), or archived and stored remotely on the
+          Oracle Storage Cloud Service container (<code>false</code>).
+      localCopy:
+        type: boolean
+        description: >-
+          Flag that specifies whether the local copy of a backup is maintained
+          for a backup that has been uploaded to the Oracle Storage Cloud
+          Service.
+      databaseIncluded:
+        type: boolean
+        description: This should always <code>false</code> for Oracle MySQL Cloud Service.
+      size:
+        type: string
+        description: >-
+          Size of the backup, in MBs. For example: <code>1011.4MB</code> (backup
+          complete) or <code>Unknown</code> (backup in-progress).
+      sizeInBytes:
+        type: integer
+        description: 'Size of the backup, in Bytes.'
+      status:
+        type: string
+        description: >-
+          Status of the backup. Valid values include: <code>Completed</code>,
+          <code>Failed</code>, <code>Deleted</code>, <code>Backup In
+          Progress</code>, <code>Upload In Progress</code>, <code>Download In
+          Progress</code>, <code>Restore In Progress</code>, or <code>Delete In
+          Progress</code>.
+      href:
+        type: string
+        description: URI of the backup resource.
+      jobHistory:
+        type: array
+        description: >-
+          Groups job history details. The job history details only return for a
+          specific backup request.
+        items:
+          $ref: '#/definitions/backup-job-history'
+      fullBackup:
+        type: string
+        description: Full backup linked to the incremental backup.
+      incrementalBackups:
+        type: array
+        description: 'List of incremental backups linked to the full backup, if any.'
+        items:
+          type: string
+      notes:
+        type: string
+        description: Free-form text that provides additional information about the backup.
+      tag:
+        $ref: '#/definitions/backup-view-info'
+  backup-view-all-response:
+    type: object
+    description: The response body contains information about all backups.
+    properties:
+      backups:
+        type: array
+        description: Groups all completed backups.
+        items:
+          $ref: '#/definitions/backup-view-response'
+      backupInProgress:
+        type: array
+        description: 'Groups the backups currently in progress, if any.'
+        items:
+          $ref: '#/definitions/backup-view-response'
+      lastFailedBackup:
+        type: array
+        description: 'Groups the failed backups, if any.'
+        items:
+          $ref: '#/definitions/backup-view-response'
+  backup-view-info:
+    type: object
+    properties:
+      startTime:
+        type: string
+        description: Date and time (as epoch) that the backup started.
+      endTime:
+        type: string
+        description: Date and time (as epoch) that the backup completed.
+      startLSN:
+        type: string
+        description: The beginning LSN of the backup.
+      endLSN:
+        type: string
+        description: The last LSN of the backup.
+      lastBinLog:
+        type: string
+        description: The name of the last binlog file.
+      lastBinLogPos:
+        type: string
+        description: The last binlog position.
+      triggeredBy:
+        type: string
+        description: >-
+          The user account that initiated this operation. If the operation is a
+          scheduled automated backup, the value is <code>scheduled</code>.
+  backup-job-history:
+    type: object
+    properties:
+      operation:
+        type: string
+        description: >-
+          Type of operation that was executed. For example, <code>backup</code>,
+          <code>delete</code>, <code>upload</code>, <code>download</code>, and
+          so on.
+      jobId:
+        type: string
+        description: Job ID for the backup.
+      status:
+        type: string
+        description: >-
+          Status of the backup. Valid values include: <code>Completed</code>,
+          <code>Failed</code>, <code>Deleted</code>, <code>Backup In
+          Progress</code>, <code>Upload In Progress</code>, <code>Download In
+          Progress</code>, <code>Restore In Progress</code>, or <code>Delete In
+          Progress</code>.
+      startDate:
+        type: string
+        description: Date and time the operation started.
+      completeDate:
+        type: string
+        description: Date and time that the operation completed.
+      statusDetails:
+        type: string
+        description: >-
+          History of system messages. Each message is separated by an ellipses
+          <code>{...}</code>.
+  backup-delete-request:
+    type: object
+    description: >-
+      The request body defines the details of the delete backup request. You
+      must specify at least one attribute.
+    properties:
+      backupId:
+        type: string
+        description: ID of the backup that you want to delete.
+      backupIdList:
+        type: array
+        description: >-
+          List of backup IDs that you want to delete. If the list contains the
+          ID for a full backup, all of its related (non-deleted) incremental
+          backups must be included the list.
+        items:
+          type: string
+  backup-view-deleted-response:
+    type: object
+    description: >-
+      The response body contains information about a backup deleted
+      synchronously or asynchronously, or a list of backups deleted
+      asynchronously.
+    properties:
+      delete-backup:
+        type: array
+        description: Groups information about a deleted backup.
+        items:
+          $ref: '#/definitions/backup-delete-info'
+      delete-backups:
+        type: array
+        description: Groups information about a list of backups deleted asynchronously.
+        items:
+          $ref: '#/definitions/backup-delete-info'
+  backup-view-all-deleted-response:
+    type: object
+    description: The response body contains information about all deleted backups.
+    properties:
+      deletedbackups:
+        type: array
+        description: Groups all deleted backups.
+        items:
+          $ref: '#/definitions/backup-view-response'
+  backup-delete-info:
+    type: object
+    properties:
+      operation:
+        type: string
+        description: Type of operation that was executed. Set to <code>delete</code>.
+      jobId:
+        type: string
+        description: Job ID for the delete backup operation.
+      status:
+        type: string
+        description: >-
+          Status of the delete backup operation. Valid values include:
+          <code>Completed</code>, <code>Failed</code>, <code>Deleted</code>, or
+          <code>Delete In Progress</code>.
+      startDate:
+        type: string
+        description: Date and time the delete backup operation started.
+      completeDate:
+        type: string
+        description: Date and time the delete backup operation completed.
+      statusDetails:
+        type: string
+        description: >-
+          History of system messages. Each message is separated by an ellipses
+          <code>{...}</code>.
+  backup-restoration-post-request:
+    type: object
+    description: The request body defines the details of the restoration request.
+    properties:
+      restoreType:
+        type: string
+        description: >-
+          The type of restore to perform; currently, only <code>pit</code>
+          (point-in-time) can be specified here.
+      restoreId:
+        type: string
+        description: >-
+          For PIT restore, specify point-in-time here. PIT must of the format
+          <code>mm/dd/yyyy HH:mm:ss</code>. For example, <code>03/12/2016
+          17:20:55</code>.
+      backupId:
+        type: string
+        description: >-
+          ID of the backup to be restored. This is the only required field if
+          perform restoring by backup ID.
+      notes:
+        type: string
+        description: >-
+          Free-form text to provide additional information about the restoration
+          operation.
+  backup-view-all-restorations-response:
+    type: object
+    description: The response body contains the details of the restoration operations.
+    properties:
+      restoreHistory:
+        type: array
+        description: Groups all completed restoration operations.
+        items:
+          $ref: '#/definitions/backup-restore-history'
+      restoreInProgress:
+        type: array
+        description: >-
+          Groups details of a restoration operation currently in progress, if
+          any.
+        items:
+          $ref: '#/definitions/backup-restore-history'
+  backup-restore-history:
+    type: object
+    properties:
+      backupId:
+        type: string
+        description: Backup ID.
+      backupDate:
+        type: string
+        description: Date and time of the backup.
+      restoreType:
+        type: string
+        description: >-
+          The extended restore type; currently, only <code>pit</code>
+          (point-in-time) is supported.
+      restoreId:
+        type: string
+        description: >-
+          For PIT restore, point-in-time is displayed in the format
+          <code>mm/dd/yyyy HH:mm:ss</code>. For example, <code>03/12/2016
+          17:20:55</code>.
+      jobId:
+        type: string
+        description: Job ID for the restore operation.
+      recoveryStartDate:
+        type: string
+        description: Date and time that the restoration operation started.
+      recoveryCompleteDate:
+        type: string
+        description: >-
+          Date and time that the restoration operation completed. This
+          information is not displayed for restorations that are still in
+          progress.
+      status:
+        type: string
+        description: >-
+          Status of the operation. Valid values include: <code>Completed</code>,
+          <code>Failed</code>, or <code>Restore In Progress</code>.
+      statusDetails:
+        type: string
+        description: History of system messages.
+      notes:
+        type: string
+        description: >-
+          Free-form text that provides additional information about the
+          restoration operation.
+  backup-config-response:
+    type: object
+    description: >-
+      The response body includes information about the backup configuration. If
+      an update request was initiated and successfully completed, the response
+      body shows the updated configuration.
+    properties:
+      defaultRetention:
+        type: string
+        description: >-
+          Number of days incremental backups and full on-demand backups are
+          retained. If set to <code>null</code>, backups are retained
+          indefinitely or until you manually delete them.<p>Full scheduled
+          backups are retained until their last related incremental backup is no
+          longer available, if any.
+      fullBackupSchedule:
+        $ref: '#/definitions/backup-schedule'
+      incrementalBackupSchedule:
+        $ref: '#/definitions/backup-schedule'
+      scheduledBackups:
+        type: string
+        description: >-
+          Type of scheduled backups. Only value is <code>ALL</code>. This means
+          both full and incremental scheduled backups are enabled.
+      extendedRestoreTypes:
+        type: string
+        description: >-
+          Only value is <code>pit</code>. This means that point-in-time
+          restoration is also supported, in addition to restoration by using a
+          backup ID.
+      lastBackupDate:
+        type: string
+        description: >-
+          Date and time that the last backup completed.<p><b>Note:</b> If there
+          have been no backups, this attribute is omitted. 
+      nextFullBackupDate:
+        type: string
+        description: Scheduled date and time for next full backup.
+      nextIncrementalBackupDate:
+        type: string
+        description: Scheduled date and time for next incremental backup.
+      lastSuccessfulCleanupDate:
+        type: string
+        description: >-
+          Date and time that the last successful cleanup job completed. The
+          cleanup job is run after the scheduled backup for the day is
+          completed. The cleanup job purges old records, deletes expired
+          backups. If there have been no cleanups, this attribute is omitted.
+      backupDestination:
+        type: string
+        description: >-
+          Location of the backups; either <code>BOTH</code> (which means Disk
+          and Oracle Storage Cloud Service Container) or <code>NONE</code>.
+      cloudStorageContainer:
+        type: string
+        description: >-
+          Name of the Oracle Storage Cloud Service container that is used to
+          store backups.
+      cloudStorageUser:
+        type: string
+        description: >-
+          User name to access the specified Oracle Storage Cloud Service
+          container.
+      totalCloudStorageContainerUsed:
+        type: string
+        description: >-
+          Total amount, in MBs, of the Storage Cloud Service container space
+          that is currently in use.
+      totalCloudStorageContainerUsedInBytes:
+        type: string
+        description: >-
+          Total amount, in Bytes, of the Storage Cloud Service container space
+          that is currently in use.
+      totalBackupVolumeUsed:
+        type: string
+        description: 'Total amount, in MBs, of the backup volume that is currently in use.'
+      totalBackupVolumeUsedInBytes:
+        type: string
+        description: 'Total amount, in Bytes, of the backup volume that is currently in use.'
+      percentBackupVolumeUsed:
+        type: string
+        description: Total percent of the backup volume that is currently in use.
+  backup-schedule:
+    type: object
+    description: >-
+      Attributes for <code>fullBackupSchedule</code> and
+      <code>incrementalBackupSchedule</code>.
+    properties:
+      second:
+        type: string
+        description: Seconds. This value is not configurable. It defaults to 0.
+      minute:
+        type: string
+        description: Minutes. Valid values are 0 to 59.
+      hour:
+        type: string
+        description: Hours. Valid values are 0 to 23.
+      dayOfMonth:
+        type: string
+        description: >-
+          Day of the month. This value is not configurable. It defaults to all
+          days of the month (&#42;).
+      month:
+        type: string
+        description: >-
+          Month. This value is not configurable. It defaults to all months
+          (&#42;).
+      dayOfWeek:
+        type: string
+        description: >-
+          Day of the week. Valid values are: Mon, Tue, Wed, Thu, Fri, Sat, Sun.
+          For full backups, only one value (day) is allowed. For incremental
+          backups, one or more values (days) are allowed. If a value is not
+          specified for incremental backups, the default value is calculated as
+          all days except the day that full backups are initiated.
+      year:
+        type: string
+        description: >-
+          Year. This value is not configurable. It defaults to all years
+          (&#42;).
+  backup-config-schedule:
+    type: object
+    description: >-
+      Updated attributes for <code>fullBackupSchedule</code> and
+      <code>incrementalBackupSchedule</code>.
+    properties:
+      minute:
+        type: string
+        description: Minutes. Valid values are 0 to 59.
+      hour:
+        type: string
+        description: Hours. Valid values are 0 to 23.
+      dayOfWeek:
+        type: string
+        description: >-
+          Day of the week. Valid values are: Mon, Tue, Wed, Thu, Fri, Sat, Sun.
+          For full backups, only one value (day) is allowed. For incremental
+          backups, one or more values (days) are allowed. If a value is not
+          specified for incremental backups, the default value is calculated as
+          all days except the day that full backups are initiated.
+  backup-config-post-request:
+    type: object
+    description: >-
+      The request body defines the details of the backup configuration update
+      request.
+    properties:
+      defaultRetention:
+        type: integer
+        description: >-
+          Number of days incremental backups and full on-demand backups are
+          retained.
+      fullBackupSchedule:
+        $ref: '#/definitions/backup-config-schedule'
+      incrementalBackupSchedule:
+        $ref: '#/definitions/backup-config-schedule'
+  access-rules-view-response:
+    description: The response body contains information about the access rules.
+    properties:
+      accessRules:
+        type: array
+        description: Groups details about access rules.
+        items:
+          $ref: '#/definitions/access-rules-details'
+      activities:
+        type: array
+        description: >-
+          Groups details about ongoing and failed activity messages, if
+          available.
+        items:
+          $ref: '#/definitions/access-rules-activities'
+  access-rules-add-post-request:
+    properties:
+      ruleName:
+        type: string
+        description: Name of the rule.
+      description:
+        type: string
+        description: Description of the rule.
+      status:
+        type: string
+        description: >-
+          Status of the rule. Valid value: <code>disabled</code> or
+          <code>enabled</code>.
+      source:
+        type: string
+        description: >-
+          The hosts from which traffic is allowed. For example,
+          <code>PUBLIC-INTERNET</code> for any host on the Internet, a single IP
+          address or a comma-separated list of subnets (in CIDR format) or IPv4
+          addresses.
+      destination:
+        type: string
+        description: >-
+          The service component to allow traffic to. For example,
+          <code>mysql_MASTER</code>.
+      ports:
+        type: string
+        description: Ports for the rule. This can be a single port or a port range.
+      protocol:
+        type: string
+        description: 'Communication protocol for the rule. For example, <code>tcp</code>.'
+      ruleType:
+        type: string
+        description: >-
+          Type of rule. For example, <code>SYSTEM</code>, <code>DEFAULT</code>,
+          or <code>USER</code>.
+    required:
+      - ruleName
+      - destination
+      - ports
+      - source
+  access-rules-details:
+    properties:
+      ruleName:
+        type: string
+        description: Name of the rule.
+      description:
+        type: string
+        description: Description of the rule.
+      status:
+        type: string
+        description: >-
+          Status of the rule. Valid value: <code>disabled</code> or
+          <code>enabled</code>.
+      source:
+        type: string
+        description: >-
+          The hosts from which traffic is allowed. For example,
+          <code>PUBLIC-INTERNET</code> for any host on the Internet, a single IP
+          address or a comma-separated list of subnets (in CIDR format) or IPv4
+          addresses.
+      destination:
+        type: string
+        description: >-
+          The service component to allow traffic to. For example,
+          <code>mysql_MASTER</code>.
+      ports:
+        type: string
+        description: Ports for the rule. This can be a single port or a port range.
+      protocol:
+        type: string
+        description: 'Communication protocol for the rule. For example, <code>tcp</code>.'
+      ruleType:
+        type: string
+        description: >-
+          Type of rule. For example, <code>SYSTEM</code>, <code>DEFAULT</code>,
+          or <code>USER</code>.
+  access-rules-activities:
+    properties:
+      activity:
+        type: array
+        description: Groups messages and errors for ongoing and failed activities.
+        items:
+          $ref: '#/definitions/access-rules-errors'
+  access-rules-errors:
+    properties:
+      errors:
+        type: string
+        description: Error encountered for an ongoing or failed activity.
+      message:
+        type: string
+        description: Message of an ongoing or failed activity.
+  access-rules-update-put-request:
+    properties:
+      operation:
+        type: string
+        description: >-
+          Type of operation to perform on the access rule. Valid values are:
+          <code>update</code> (to disable or enable a rule) and
+          <code>delete</code> (to delete a rule).
+      status:
+        type: string
+        description: >-
+          State of the access rule to update to. This attribute is required only
+          when you disable or enable a rule. Valid value is
+          <code>disabled</code> or <code>enabled</code>.
+    required:
+      - operation
+  service-create-instance-request:
+    title: Request Body
+    type: object
+    required:
+      - serviceParameters
+      - componentParameters
+    properties:
+      serviceParameters:
+        $ref: '#/definitions/service-create-instance-service-parameters'
+      componentParameters:
+        $ref: '#/definitions/service-create-instance-component-parameters'
+  service-create-instance-service-parameters:
+    title: service parameters
+    type: object
+    required:
+      - serviceName
+      - vmPublicKeyText
+    properties:
+      serviceName:
+        type: string
+        description: >-
+          Name of MySQL Cloud Service instance. The service name:<ul><li>Must
+          not exceed 50 characters.</li><li>Must start with a
+          letter.</li><li>Must contain only letters, numbers, or
+          hyphens.</li><li>Must not end with a hyphen.</li><li>Must not contain
+          any other special characters.</li><li>Must be unique within the
+          identity domain.</li></ul>
+      serviceDescription:
+        type: string
+        description: >-
+          Free-form text that provides additional information about the service
+          instance.
+      meteringFrequency:
+        type: string
+        description: >-
+          The billing frequency of the service instance; either
+          <code>MONTHLY</code> or <code>HOURLY</code>.
+      backupDestination:
+        type: string
+        description: >-
+          Backup destination. Valid values are: <li><code>BOTH</code> - Both
+          Cloud Storage and Local Storage</li><li><code>NONE</code> - None</li>
+      cloudStorageContainer:
+        type: string
+        description: >-
+          Name of the Oracle Storage Cloud Service container used to provide
+          storage for your service instance backups. Use the following format to
+          specify the container name:
+          <code>&lt;<i>storageservicename</i>&gt;-&lt;<i>storageidentitydomain</i>&gt;&#47;&lt;<i>containername</i>&gt;</code><p><b>Notes</b>:<ul><li>An
+          Oracle Storage Cloud Service container is not required when
+          provisioning a MySQL Cloud Service instance.</li><li>Do not use an
+          Oracle Storage Cloud container that you use to back up MySQL Cloud
+          Service instances for any other purpose. Using the container for
+          multiple purposes can result in billing errors.</li></ul>
+      cloudStorageUser:
+        type: string
+        description: Username for the Oracle Storage Cloud Service administrator.
+      cloudStoragePassword:
+        type: string
+        description: Password for the Oracle Storage Cloud Service administrator.
+      cloudStorageContainerAutoGenerate:
+        type: boolean
+        description: >-
+          Indicate whether to create an Oracle Storage Cloud container
+          automatically.
+      vmUser:
+        type: string
+        description: >-
+          VM operating system user that is valid for variations of compute based
+          services. It will default to the username <code>opc</code> when not
+          specified.
+      vmPublicKeyText:
+        type: string
+        description: >-
+          Public key for the secure shell (SSH). This key will be used for
+          authentication when connecting to the MySQL Cloud Service instance
+          using an SSH client. You generate an SSH public-private key pair using
+          a standard SSH key generation tool.
+      noRollback:
+        type: boolean
+        description: >-
+          This optional property can be set to <code>true</code> to avoid
+          automatic rollback and retry for the service.
+  service-create-instance-component-parameters:
+    title: MySQL server parameters
+    type: object
+    required:
+      - mysql
+    properties:
+      mysql:
+        $ref: '#/definitions/service-create-instance-parameters'
+  service-create-instance-parameters:
+    title: MySQL service parameters
+    type: object
+    required:
+      - mysqlUserName
+      - mysqlUserPassword
+    properties:
+      shape:
+        type: string
+        description: >-
+          Desired compute shape. A shape defines the number of Oracle Compute
+          Units (OCPUs) and amount of memory (RAM). Valid shapes include:
+          <ul><li>oc3: 1 OCPU, 7.5 GB memory</li><li>oc4: 2 OCPUs, 15 GB
+          memory</li><li>oc5: 4 OCPUs, 30 GB memory</li><li>oc6: 8 OCPUs, 60 GB
+          memory</li><li>oc7: 16 OCPUs, 120 GB memory</li><li>oc1m: 1 OCPU, 15
+          GB memory</li><li>oc2m: 2 OCPUs, 30 GB memory</li><li>oc3m: 4 OCPUs,
+          60 GB memory</li><li>oc4m: 8 OCPUs, 120 GB memory</li><li>oc5m: 16
+          OCPUs, 240 GB memory</li></ul>.<p>See <a
+          href='http://www.oracle.com/pls/topic/lookup?ctx=cloud&id=OCSUG210'
+          target='_blank'>About Shapes</a> in <i>Using Oracle Compute Cloud
+          Service</i> for more information about shapes.
+      mysqlUserName:
+        type: string
+        description: >-
+          Administration user for connecting to the service via the MySQL
+          protocol. User name should start with a letter, consist of letters and
+          numbers, and be between 2 to 32 characters. The default is
+          <code>root</code>.
+      mysqlUserPassword:
+        type: string
+        description: >-
+          Password for MySQL administration user. The password must meet the
+          following requirements:<ul><li>Starts with a letter</li><li>Is between
+          8 and 30 characters long</li><li>Contains letters, at least one
+          number, and optionally, any number of these special characters: dollar
+          sign ($), pound sign (#), and underscore (_).</li></ul>
+      mysqlPort:
+        type: string
+        description: >-
+          Port for the MySQL server. Port must be in the range of 3200-3399. The
+          default is <code>3306</code>.
+      mysqlEMPort:
+        type: string
+        description: >-
+          Port for the MySQL Enterprise Monitor. The default is
+          <code>18443</code>.
+      dbStorage:
+        type: integer
+        description: >-
+          Storage volume size for MySQL data. The number must be between 25 and
+          1024 GB. Default value is 25.
+      dbName:
+        type: string
+        description: >-
+          Initial database schema name of your choice, up to 64 characters; can
+          contain letters, numbers and special characters (_,$). The default
+          name is <code>mydatabase</code>.
+      mysqlCharset:
+        type: string
+        description: >-
+          MySQL server character set. See <a
+          href='http://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html'>Supported
+          Character Sets and Collations</a> for the character sets MySQL
+          supports.
+      mysqlCollation:
+        type: string
+        description: >-
+          MySQL server collation. See <a
+          href='http://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html'>Supported
+          Character Sets and Collations</a> for the permissible collations of
+          each character set.
+      enterpriseMonitor:
+        type: string
+        description: >-
+          Indicate whether to configure MySQL Enterprise Monitor during
+          provisioning. The value can only be one of the valid choices, either
+          <code>Yes</code> or <code>No</code> and the default is
+          <code>No</code>.
+        default: 'No'
+        enum:
+          - 'Yes'
+          - 'No'
+      enterpriseMonitorManagerUser:
+        type: string
+        description: >-
+          Name for the Enterprise Monitor manager user. Manager User name should
+          start with a letter, consist of letters and numbers, and be between 2
+          to 32 characters.
+      enterpriseMonitorManagerPassword:
+        type: string
+        description: >-
+          Password for MySQL Enterprise Monitor manager. The password must be at
+          least 8 characters long with at least one lower case letter, one upper
+          case letter, one number and one special character.
+      enterpriseMonitorAgentUser:
+        type: string
+        description: >-
+          Name for the Enterprise Monitor agent user. Agent User name should
+          start with a letter, consist of letters and numbers, and be between 2
+          to 32 characters.
+      enterpriseMonitorAgentPassword:
+        type: string
+        description: >-
+          Password for MySQL Enterprise Monitor agent. The password must be at
+          least 8 characters long with at least one lower case letter, one upper
+          case letter, one number and one special character.
+  service-accepted-response:
+    title: Response Body
+    description: The response body contains information about the operation.
+    properties:
+      message:
+        description: >-
+          System message that describes the operation. For example:
+          <code>Submitted job to create service [{serviceId}] in domain
+          [{identityDomainId}].</code>
+        type: string
+      jobId:
+        description: Job ID for the operation.
+        type: string
+  service-view-all-instances:
+    title: Response Body
+    type: object
+    description: The response body contains information of all service instances.
+    properties:
+      services:
+        title: services Array
+        type: array
+        description: >-
+          Array of JSON object elements, with one element for each service
+          instance in the identity domain.
+        items:
+          $ref: '#/definitions/service-view-instance'
+  service-view-instance:
+    title: service instance item
+    type: object
+    properties:
+      serviceId:
+        type: string
+        description: ID of the Oracle MySQL Cloud Service instance.
+      serviceName:
+        type: string
+        description: Name of the Oracle MySQL Cloud Service instance.
+      serviceType:
+        type: string
+        description: >-
+          Type of the Oracle MySQL Cloud Service instance, such as
+          <code>MySQLCS</code>.
+      domainName:
+        type: string
+        description: The identity domain housing the service instance.
+      serviceVersion:
+        type: string
+        description: 'The major version of MySQL Server. For example, <code>5.7</code>.'
+      releaseVersion:
+        type: string
+        description: 'The release version of MySQL Server. For example, <code>5.7.13</code>.'
+      metaVersion:
+        type: string
+        description: The release version of metadata service manager.
+      serviceLevel:
+        type: string
+        description: >-
+          The service level of the service instance. For example,
+          <code>PAAS</code> for Oracle Cloud Service.
+      subscription:
+        type: string
+        description: >-
+          The subscription type of the service instance; either
+          <code>MONTHLY</code> or <code>HOURLY</code>.
+      meteringFrequency:
+        type: string
+        description: >-
+          The billing frequency of the service instance; either
+          <code>MONTHLY</code> or <code>HOURLY</code>.
+      edition:
+        type: string
+        description: 'The edition of MySQL Server. For example, <code>EE</code>.'
+      attributes:
+        type: array
+        description: >-
+          Array of the service attributes. For example, <code>MYSQL_PORT</code>,
+          <code>CLOUD_STORAGE_CONTAINER</code>,
+          <code>LOCAL_BACKUP_VOLUME_SIZE</code>, etc.
+        items:
+          $ref: '#/definitions/service-attributes'
+      components:
+        type: array
+        description: details of each service component.
+        items:
+          $ref: '#/definitions/service-view-components'
+      activityLogs:
+        type: array
+        description: activities of the service instance.
+        items:
+          $ref: '#/definitions/service-view-activity-log'
+      serviceLevelDisplayName:
+        type: string
+        description: >-
+          The display name of the service level. For example, <code>Oracle MySQL
+          Cloud Service</code>.
+      editionDisplayName:
+        type: string
+        description: >-
+          The display name of MySQL Server edition. For example,
+          <code>Enterprise Edition</code>.
+      meteringFrequencyDisplayName:
+        type: string
+        description: >-
+          The display name of the metering frequency; either
+          <code>Monthly</code> or <code>Hourly</code>.
+      DATA_VOLUME_SIZE:
+        type: string
+        description: Storage volume size for MySQL data.
+      MYSQL_PORT:
+        type: string
+        description: The listener port for MySQL server.
+      BACKUP_DESTINATION:
+        type: string
+        description: >-
+          Backup destination; either <code>BOTH</code> - Both Cloud Storage and
+          Local Storage, or <code>NONE</code> - None.
+      CLOUD_STORAGE_CONTAINER:
+        type: string
+        description: >-
+          Name of the Oracle Storage Cloud Service container used to provide
+          storage for MySQL service instance backups.
+      LOCAL_BACKUP_VOLUME_MOUNT:
+        type: string
+        description: The volume mount point for local backups.
+      LOCAL_BACKUP_VOLUME_SIZE:
+        type: string
+        description: Storage volume size for MySQL local backups.
+      totalSharedStorage:
+        type: string
+        description: >-
+          The total shared storage size; always <code>0</code> for MySQL Cloud
+          Service.
+      serviceStateDisplayName:
+        type: string
+        description: The display name of the service current state.
+      computeSiteName:
+        type: string
+        description: The Oracle Cloud location housing the service instance.
+      patching:
+        $ref: '#/definitions/service-view-patching'
+  service-view-components:
+    title: service component details.
+    type: object
+    properties:
+      serviceId:
+        type: string
+        description: ID of the Oracle MySQL Cloud Service instance.
+      componentId:
+        type: string
+        description: ID of the service component.
+      state:
+        type: string
+        description: The current state of the component.
+      version:
+        type: string
+        description: 'The version of the component. For example, <code>5.7</code>.'
+      creationDate:
+        type: string
+        description: The date and time when the service instance was created.
+      instanceName:
+        type: string
+        description: >-
+          The component name of the service instance. For example,
+          <code>mysql</code>.
+      instanceRole:
+        type: string
+        description: >-
+          The role of the service instance. It is <code>None</code> for Oracle
+          MySQL Cloud Service.
+      attributes:
+        type: array
+        description: >-
+          Array of service component attributes, such as compute shape, connect
+          string, etc.
+        items:
+          $ref: '#/definitions/service-attributes'
+      vmInstances:
+        type: array
+        description: VM instances details.
+        items:
+          $ref: '#/definitions/service-vm-instance-details'
+      adminHostName:
+        type: string
+        description: >-
+          The host name of the administration node. It is usually the instance
+          itself.
+      storageVolumes:
+        type: array
+        description: All storage volumes of the service instance.
+        items:
+          $ref: '#/definitions/service-view-storage-volume'
+  service-view-patching:
+    title: service patching details.
+    type: object
+    properties:
+      currentOperation:
+        $ref: '#/definitions/service-view-current-operation'
+      totalAvailablePatches:
+        type: integer
+        description: Total number of available patches.
+  service-view-current-operation:
+    title: service patching current operation.
+    type: object
+    properties:
+      operation:
+        type: string
+        description: Current patching operation.
+  service-attributes:
+    title: service component attribute.
+    type: object
+    properties:
+      displayName:
+        type: string
+        description: Display name of the attribute.
+      type:
+        type: string
+        description: Type of the attribute.
+      value:
+        type: string
+        description: Value of the attribute.
+      displayValue:
+        type: string
+        description: Display value of the attribute.
+      isKeyBinding:
+        type: boolean
+        description: Indicates whether the attribute is key binding.
+  service-vm-instance-details:
+    title: details of each VM instance.
+    type: object
+    properties:
+      vmId:
+        type: string
+        description: The ID of the compute node.
+      hostname:
+        type: string
+        description: The host name of the compute node.
+      label:
+        type: string
+        description: The label of the compute node.
+      ipAddress:
+        type: string
+        description: The IP address of the compute node.
+      publicIpAddress:
+        type: string
+        description: The IP address of the compute node.
+      usageType:
+        type: string
+        description: >-
+          The usage type of the compute node. It is usually
+          <code>MYSQL_SERVER</code> for Oracle MySQL Cloud Service.
+      role:
+        type: string
+        description: >-
+          The role of the compute node. It is usually <code>MYSQL_SERVER</code>
+          for Oracle MySQL Cloud Service.
+      componentType:
+        type: string
+        description: >-
+          The type of the component. It is usually <code>mysql</code> for Oracle
+          MySQL Cloud Service.
+      state:
+        type: string
+        description: >-
+          The current state of the compute node. Valid values are:
+          <ul><li><code>Ready</code>: Fully
+          operational</li><li><code>Starting</code>: Being created or
+          initialized</li><li><code>Stopping</code>: Being
+          stopped</li><li><code>Error</code>: Has some error
+          condition(s)</li></uL>
+      shapeId:
+        type: string
+        description: The Oracle Compute Cloud shape of the compute node.
+      totalStorage:
+        type: integer
+        description: >-
+          The size in GB of the total storage allocated to the compute node,
+          including data volume, backup volume, and MySQL log volume.
+      creationDate:
+        type: string
+        description: The date and time when the service instance was created.
+      isAdminNode:
+        type: boolean
+        description: Indicates whether the compute node is an administration node.
+      servers:
+        type: array
+        description: Servers instance information.
+        items:
+          $ref: '#/definitions/service-vm-instance-server-info'
+      storageVolumes:
+        type: array
+        description: All storage volumes of the service instance.
+        items:
+          $ref: '#/definitions/service-view-storage-volume'
+      vmStateDisplayName:
+        type: string
+        description: The display name of the current state of the compute node.
+  service-view-storage-volume:
+    title: details of a storage volume.
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of the storage volume.
+      size:
+        type: string
+        description: Size of the storage volume.
+      partitions:
+        type: string
+        description: Number of partitions of the storage volume.
+  service-vm-instance-server-info:
+    title: details of a instance server.
+    type: object
+    properties:
+      serverId:
+        type: integer
+        description: ID of the server.
+      serverName:
+        type: string
+        description: Name of the server.
+      serverType:
+        type: string
+        description: 'Type of the server, such as <code>MASTER</code>.'
+      serverRole:
+        type: string
+        description: Role of the server.
+      state:
+        type: string
+        description: Current state of the server.
+      creationDate:
+        type: string
+        description: Date and time when the server was created.
+      serverStateDisplayName:
+        type: string
+        description: Display name of the server.
+  service-change-instance-status-request:
+    description: >-
+      The request body defines the details of the stop, start or restart
+      request.
+    properties:
+      force:
+        type: boolean
+        description: Flag used to force the request.
+      allServiceHosts:
+        type: boolean
+        description: >-
+          When true, this will control all hosts in the service.  When provided,
+          the 'hosts' array(s) should be empty.
+      hosts:
+        type: array
+        description: >-
+          A list of hosts to control. Note that the service is controlled if ALL
+          hosts are listed, making this the same behavior as including
+          'allServiceHosts': true
+        items:
+          type: string
+  service-view-activity-log:
+    description: Activity logs of the operation.
+    properties:
+      activityLogId:
+        type: string
+        description: The log ID of the operation.
+      serviceName:
+        type: string
+        description: The name of the instance.
+      serviceType:
+        type: string
+        description: The service type of the instance.
+      identityDomain:
+        type: string
+        description: The identity domain hosting the instance.
+      serviceId:
+        type: string
+        description: The corresponding ID of the MySQL Cloud Service instance.
+      jobId:
+        type: string
+        description: The ID of the current job.
+      startDate:
+        type: string
+        description: The date and time when the job started.
+      endDate:
+        type: string
+        description: The date and time when the job ended.
+      status:
+        type: string
+        description: >-
+          <p>Current status of the job; one of: <code>In Progress</code>,
+          <code>Succeeded</code>, <code>Failed</code>.</p>
+      operationId:
+        type: string
+        description: The corresponding ID of the operation.
+      operationType:
+        type: string
+        description: 'The type of the operation, such as <code>CREATE_SERVICE</code>.'
+      summaryMessage:
+        type: string
+        description: The summary of the activity log.
+      authDomain:
+        type: string
+        description: Identity domain for the Oracle MySQL Cloud Service account.
+      authUser:
+        type: string
+        description: The authentication user.
+      initiatedBy:
+        type: string
+        description: The user making the request.
+      messages:
+        type: array
+        description: Log details of the operation.
+        items:
+          $ref: '#/definitions/service-message-item'
+  service-message-item:
+    description: a service message item.
+    properties:
+      activityDate:
+        type: string
+        description: The date and time of the current activity.
+      message:
+        type: string
+        description: The message of the activity.
+  service-scale-post-request:
+    title: Response Body
+    type: object
+    description: The response body contains information about the operation.
+    properties:
+      components:
+        $ref: '#/definitions/service-scale-components-post-request'
+  service-scale-components-post-request:
+    properties:
+      shape:
+        type: string
+        description: >-
+          Desired compute shape. A shape defines the number of Oracle Compute
+          Units (OCPUs) and amount of memory (RAM). Valid shapes include:
+          <ul><li>oc3: 1 OCPU, 7.5 GB memory</li><li>oc4: 2 OCPUs, 15 GB
+          memory</li><li>oc5: 4 OCPUs, 30 GB memory</li><li>oc6: 8 OCPUs, 60 GB
+          memory</li><li>oc7: 16 OCPUs, 120 GB memory</li><li>oc1m: 1 OCPU, 15
+          GB memory</li><li>oc2m: 2 OCPUs, 30 GB memory</li><li>oc3m: 4 OCPUs,
+          60 GB memory</li><li>oc4m: 8 OCPUs, 120 GB memory</li><li>oc5m: 16
+          OCPUs, 240 GB memory</li></ul>.<p>See <a
+          href='http://www.oracle.com/pls/topic/lookup?ctx=cloud&id=OCSUG210'
+          target='_blank'>About Shapes</a> in <i>Using Oracle Compute Cloud
+          Service</i> for more information about shapes.
+      hosts:
+        type: array
+        description: A list of hosts to control.
+        items:
+          type: string
+    required:
+      - shape
+      - hosts
+  service-delete-instance-put-request:
+    description: The request body defines details for this delete MySQL instance operation.
+    properties:
+      options:
+        type: object
+        description: >-
+          This operation does not yet accept any options, so pass in an empty
+          object '{}' for now.
+        items:
+          type: string
+  service-add-storage-post-request:
+    title: Response Body
+    type: object
+    description: The response body contains information about the operation.
+    properties:
+      components:
+        $ref: '#/definitions/service-add-storage-components-post-request'
+  service-add-storage-components-post-request:
+    properties:
+      dataStorage:
+        type: integer
+        description: 'Amount of data storage (GB), from 25 to 1024.'
+      backupStorage:
+        type: integer
+        description: 'Amount of backup storage (GB), from 50 to 2000.'
+      MySQLLogStorage:
+        type: integer
+        description: 'Amount of redolog storage storage (GB), from 20 to 1024.'
+      hosts:
+        type: array
+        description: A list of hosts to control.
+        items:
+          type: string
+    required:
+      - hosts
+  monitor-response:
+    description: The response body includes health monitoring information.
+    properties:
+      timestamp:
+        type: string
+        description: Time at which the status was recorded (UTC).
+      serviceId:
+        type: integer
+        description: ID of the Oracle MySQL Cloud Service instance.
+      status:
+        type: string
+        description: >-
+          Status of the instance. Valid values are <code>UP</code>,
+          <code>DOWN</code>, or <code>ERROR</code> (indicating a system error
+          was encountered during health check).
+      domainName:
+        type: string
+        description: Identity domain ID for the Oracle MySQL Cloud Service account.
+      components:
+        type: array
+        description: Groups the health details for Oracle MySQL Cloud Service components.
+        items:
+          $ref: '#/definitions/monitor-components-response'
+      serviceType:
+        type: string
+        description: Type of the Oracle MySQL Cloud Service instance.
+      statusMessage:
+        type: string
+        description: >-
+          Status of the Oracle MySQL Cloud Service instance. For example,
+          <code>Running</code>.
+      serviceName:
+        type: string
+        description: Name of the Oracle MySQL Cloud Service instance.
+  monitor-components-response:
+    properties:
+      message:
+        type: string
+        description: Message about the component level health metrics collection.
+      serviceId:
+        type: integer
+        description: ID of the Oracle MySQL Cloud Service instance.
+      vmInstances:
+        type: array
+        description: >-
+          The health details of each Virtual Machine (VM) associated with the
+          Oracle MySQL Cloud Service component.
+        items:
+          $ref: '#/definitions/monitor-vm'
+      componentId:
+        type: integer
+        description: ID of the component.
+      componentType:
+        type: string
+        description: 'Type of the component. For example, <code>mysql</code>.'
+  monitor-vm:
+    properties:
+      timestamp:
+        type: string
+        description: Time at which the status was recorded (UTC).
+      status:
+        type: string
+        description: >-
+          Status of the VM. Valid values are <code>UP</code>, <code>DOWN</code>,
+          or <code>ERROR</code> (indicating a system error was encountered
+          during health check).
+      servers:
+        type: array
+        description: The health details of MySQL server(s) running on a VM.
+        items:
+          $ref: '#/definitions/monitor-vm-server-info'
+      sub_status:
+        type: string
+        description: Sub-status of the VM.
+      hostName:
+        type: string
+        description: Name of the host.
+      label:
+        type: string
+        description: >-
+          Labels of the VM. For example, <code>mysql</code>,
+          <code>MYSQL_SERVER</code>.
+      vmId:
+        type: integer
+        description: ID of the VM.
+      healthData:
+        type: object
+        description: The health summary of the VM.
+        properties:
+          Data_Volume_Utilization:
+            type: object
+            description: Total data storage used in percent.
+            items:
+              $ref: '#/definitions/monitor-health-data'
+          Machine_CPU_Utilization:
+            type: object
+            description: CPU utilization in the VM.
+            items:
+              $ref: '#/definitions/monitor-health-data'
+          Machine_Free_Memory:
+            type: object
+            description: Total free memory in the VM.
+            items:
+              $ref: '#/definitions/monitor-health-data'
+      statusMessage:
+        type: string
+        description: 'Status message, such as <code>VM running</code>.'
+      computeStatus:
+        type: integer
+        description: Status of the compute node.
+  monitor-vm-server-info:
+    properties:
+      timestamp:
+        type: string
+        description: Time at which the status was recorded (UTC).
+      status:
+        type: string
+        description: >-
+          Status of the VM. Valid values are <code>UP</code>, <code>DOWN</code>,
+          or <code>ERROR</code> (indicating a system error was encountered
+          during health check).
+      serverId:
+        type: integer
+        description: ID of the MySQL Server.
+      serverName:
+        type: string
+        description: Name of the MySQL Server.
+      healthData:
+        type: object
+        description: The health summary of the MySQL Server.
+        properties:
+          MySQL_Requests_Per_Sec:
+            type: object
+            description: Number of MySQL requests per second.
+            items:
+              $ref: '#/definitions/monitor-health-data'
+          MySQL_UpTime_Sec:
+            type: object
+            description: Time in seconds the MySQL server is running.
+            items:
+              $ref: '#/definitions/monitor-health-data'
+          MySQL_Open_Connections:
+            type: object
+            description: Number of open connections to the MySQL server.
+            items:
+              $ref: '#/definitions/monitor-health-data'
+      statusMessage:
+        type: string
+        description: ''
+      serverType:
+        type: string
+        description: <code>MASTER</code>
+  monitor-health-data:
+    properties:
+      unit:
+        type: string
+        description: >-
+          Unit measurement of the metric. For example, <code>MB</code>,
+          <code>seconds</code>.
+      value:
+        type: string
+        description: Value of the health monitoring data.
+      displayName:
+        type: string
+        description: Display name for the health monitoring runtime metric.
